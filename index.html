@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EVANNVSL — TAKE YOUR HEART</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- DYNAMIC LAYERS -->
+<div id="breach-overlay" aria-hidden="true"></div>
+<div id="chromatic-layer" aria-hidden="true"></div>
+
+<!-- BACKGROUND SYSTEM -->
+<div id="bg-layer">
+  <div class="noise"></div>
+  <div class="star-pattern" aria-hidden="true"></div>
+  <div class="scan-line" id="scan1"></div>
+  <div class="scan-line" id="scan2"></div>
+  <div class="slash-bg" id="slashBg1" aria-hidden="true"></div>
+  <div class="slash-bg" id="slashBg2" aria-hidden="true"></div>
+  <div class="matrix-code" id="matrixCode"></div>
+</div>
+<div id="bg-glow"></div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-count"><span id="preNum">00</span><span class="pre-percent">%</span></div>
+  <div class="pre-label">INITIALIZING SYSTEM</div>
+  <div class="security-status">SECURITY PROTOCOL ACTIVE</div>
+  <div class="pre-bar-track"><div class="pre-bar-fill" id="preBarFill"></div></div>
+</div>
+
+<!-- FLOATING DECORATIONS -->
+<div class="floating-badge" aria-hidden="true">◆ SECURE</div>
+<div class="rotating-text" aria-hidden="true">
+  <svg viewBox="0 0 100 100"><path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+    <text><textPath href="#circlePath">TAKE YOUR HEART • PHANTOM THIEVES • </textPath></text>
+  </svg>
+</div>
+
+<!-- HEADER -->
+<header id="siteHeader">
+  <a href="#hero" class="logo">EVANNVSL<span class="dot">.</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span></button>
+  <nav class="menu" id="menu">
+    <a href="#about"><em>◆</em> ABOUT</a>
+    <a href="#portfolio"><em>◆</em> WORK</a>
+    <a href="#skills"><em>◆</em> SKILLS</a>
+    <a href="#contact"><em>◆</em> CONTACT</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-slash" aria-hidden="true">
+    <div class="slash-text">TAKE YOUR HEART</div>
+  </div>
+  
+  <!-- Character Cut-in dari gambar upload -->
+  <div class="hero-cutin" aria-hidden="true">
+    <img src="mnt/agents/upload/Idk%20persona%20RAHHH.jpeg" alt="Joker Cut-in" class="cutin-img" id="cutinImg">
+    <div class="cutin-flash"></div>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-kicker reveal">HI IT'S ME</p>
+    <h1 class="hero-title reveal">
+      <span class="line">EVANNVSL</span>
+      <span class="line accent">AS LOSER<span class="dot">.</span></span>
+    </h1>
+    <p class="hero-sub reveal">I Like What I Do, and I Do What I Like</p>
+    <div class="hero-cta reveal">
+      <a href="#portfolio" class="btn btn-primary magnetic"><span>PORTFOLIO</span></a>
+      <a href="#contact" class="btn btn-ghost magnetic"><span>HIRE ME</span></a>
+    </div>
+  </div>
+  
+  <div class="hero-scroll">SCROLL <span>↓</span></div>
+  <div class="security-badge">◆ SECURE CONNECTION ◆</div>
+</section>
+
+<!-- STAR DIVIDER -->
+<div class="p5-star-divider" aria-hidden="true"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag reveal"><span>◆</span> ABOUT</div>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-frame">
+        <img src="mnt/agents/upload/persona%205%20wallpaper%20%E2%98%86.jpeg" alt="P5 Pattern" class="about-img">
+        <div class="about-frame-border"></div>
+        <div class="about-frame-corner tl"></div>
+        <div class="about-frame-corner tr"></div>
+        <div class="about-frame-corner bl"></div>
+        <div class="about-frame-corner br"></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <h2 class="about-statement reveal">
+        Dihina hina dan direndahkan saya juga <span class="cut-red">diam</span> tanpa kehilangan <span class="cut-black">kejelasan</span>.
+      </h2>
+      <div class="about-copy reveal">
+        <p>Saya <strong>evannvsl</strong>, mahasiswa Informatika yang membangun web, aplikasi, dan eksperimen visual. Saya suka menggabungkan presisi teknis dengan sentuhan visual yang punya karakter.</p>
+        <p>Setiap proyek saya perlakukan seperti koleksi: ada konsep, ada eksekusi, dan ada detail yang dijaga sampai akhir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAR DIVIDER -->
+<div class="p5-star-divider" aria-hidden="true"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-tag reveal"><span>◆</span> SELECTED WORK</div>
+  <h2 class="section-heading reveal">PROJECT<br>HISTORY.</h2>
+
+  <div class="work-grid">
+    <article class="work-card reveal">
+      <div class="work-media">
+        <div class="work-img-placeholder">
+          <img src="mnt/agents/upload/1.jpeg" alt="Project 1" class="work-img">
+          <div class="work-img-slash"></div>
+        </div>
+        <span class="work-num">01</span>
+        <div class="work-halftone"></div>
+        <div class="work-security-tag">◆ SECURE</div>
+      </div>
+      <div class="work-info">
+        <h3>Nama Proyek Pertama</h3>
+        <p>Deskripsi singkat: masalah yang diselesaikan, peran kamu, dan hasil yang dicapai.</p>
+        <div class="work-tags"><span>WEB APP</span><span>REACT</span></div>
+        <a href="#" class="work-link magnetic">LIHAT DETAIL <i>→</i></a>
+      </div>
+    </article>
+
+    <article class="work-card reveal">
+      <div class="work-media">
+        <div class="work-img-placeholder">
+          <img src="mnt/agents/upload/2.jpeg" alt="Project 2" class="work-img">
+          <div class="work-img-slash"></div>
+        </div>
+        <span class="work-num">02</span>
+        <div class="work-halftone"></div>
+        <div class="work-security-tag">◆ SECURE</div>
+      </div>
+      <div class="work-info">
+        <h3>Nama Proyek Kedua</h3>
+        <p>Konteks singkat kenapa proyek ini dibuat dan tantangan teknis utamanya.</p>
+        <div class="work-tags"><span>MOBILE</span><span>PYTHON</span></div>
+        <a href="#" class="work-link magnetic">LIHAT DETAIL <i>→</i></a>
+      </div>
+    </article>
+
+    <article class="work-card reveal">
+      <div class="work-media">
+        <div class="work-img-placeholder">
+          <img src="mnt/agents/upload/image.png" alt="Project 3" class="work-img">
+          <div class="work-img-slash"></div>
+        </div>
+        <span class="work-num">03</span>
+        <div class="work-halftone"></div>
+        <div class="work-security-tag">◆ SECURE</div>
+      </div>
+      <div class="work-info">
+        <h3>Nama Proyek Ketiga</h3>
+        <p>Riset, studi kasus, atau eksperimen teknis di luar proyek software biasa.</p>
+        <div class="work-tags"><span>RESEARCH</span><span>CASE STUDY</span></div>
+        <a href="#" class="work-link magnetic">BACA SELENGKAPNYA <i>→</i></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- STAR DIVIDER -->
+<div class="p5-star-divider" aria-hidden="true"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag reveal"><span>◆</span> SKILLSET</div>
+  <h2 class="section-heading reveal">MY<br>SKILLS.</h2>
+
+  <div class="skills-visual reveal">
+    <div class="skill-radar">
+      <div class="radar-slice" style="--percent:90; --angle:0deg; --color:var(--red)"><span>FRONTEND</span></div>
+      <div class="radar-slice" style="--percent:75; --angle:72deg; --color:#ff4444"><span>BACKEND</span></div>
+      <div class="radar-slice" style="--percent:85; --angle:144deg; --color:#ff6666"><span>BAHASA</span></div>
+      <div class="radar-slice" style="--percent:70; --angle:216deg; --color:#ff3333"><span>DESAIN</span></div>
+      <div class="radar-slice" style="--percent:80; --angle:288deg; --color:#cc0000"><span>TOOLS</span></div>
+    </div>
+  </div>
+
+  <div class="spec-table reveal">
+    <div class="spec-row">
+      <span class="spec-label">FRONTEND</span>
+      <span class="spec-value">React, Tailwind, Vue</span>
+      <span class="spec-bar"><i style="width:90%"></i></span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">BACKEND</span>
+      <span class="spec-value">Node.js, Express, REST API</span>
+      <span class="spec-bar"><i style="width:75%"></i></span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">BAHASA</span>
+      <span class="spec-value">JavaScript, Python, SQL</span>
+      <span class="spec-bar"><i style="width:85%"></i></span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-label">DESAIN</span>
+      <span class="spec-value">Alight Motion, After Effects, Davinci</span>
+      <span class="spec-bar"><i style="width:70%"></i></span>
+    </div>
+  </div>
+</section>
+
+<!-- STAR DIVIDER -->
+<div class="p5-star-divider" aria-hidden="true"></div>
+
+<!-- CHAT -->
+<section id="chat">
+  <div class="section-tag reveal"><span>◆</span> LIVE CHAT</div>
+  <h2 class="section-heading reveal">PERSONA 5<br>STYLE.</h2>
+
+  <div class="chat-arena reveal">
+    <div class="chat-bubble left">
+      <div class="bubble-body">
+        <span class="bubble-name">MORGANA</span>
+        <p>Looking cool, Joker!</p>
+      </div>
+    </div>
+    <div class="chat-bubble right">
+      <div class="bubble-body">
+        <span class="bubble-name">JOKER</span>
+        <p>Thanks, Morgana.</p>
+      </div>
+    </div>
+    <div class="chat-bubble left">
+      <div class="bubble-body">
+        <span class="bubble-name">MORGANA</span>
+        <p>I'm you... Nothing... Then don't text me!!!</p>
+      </div>
+    </div>
+    <div class="chat-bubble right">
+      <div class="bubble-body">
+        <span class="bubble-name">JOKER</span>
+        <p>Bit mean.</p>
+      </div>
+    </div>
+    <div class="chat-bubble left">
+      <div class="bubble-body">
+        <span class="bubble-name">MORGANA</span>
+        <p>Whatever... Seems ok?</p>
+      </div>
+    </div>
+    <div class="chat-bubble right">
+      <div class="bubble-body">
+        <span class="bubble-name">JOKER</span>
+        <p>Yeah that is actually a bit better. Good work mate.</p>
+      </div>
+    </div>
+    <div class="chat-bubble left">
+      <div class="bubble-body">
+        <span class="bubble-name">MORGANA</span>
+        <p>Finally!<br>Getting closer to being finished now, yay!</p>
+      </div>
+    </div>
+
+    <div class="chat-input-bar">
+      <span class="input-prefix">◆ ENTER MESSAGE...</span>
+      <button class="input-send">SEND</button>
+    </div>
+  </div>
+</section>
+
+<!-- STAR DIVIDER -->
+<div class="p5-star-divider" aria-hidden="true"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-security-grid" aria-hidden="true"></div>
+  <div class="contact-glitch" aria-hidden="true"></div>
+  
+  <div class="section-tag reveal light"><span>◆</span> CONTACT</div>
+  <h2 class="contact-heading reveal">
+    <span class="word">MARI</span>
+    <span class="word">BUAT</span><br>
+    <span class="word accent">SESUATU</span>
+    <span class="word">BARENG.</span>
+  </h2>
+  <a href="mailto:your.email@example.com" class="contact-email reveal magnetic">your.email@example.com</a>
+  <div class="contact-socials reveal">
+    <a href="#" target="_blank" rel="noopener">GITHUB</a>
+    <a href="#" target="_blank" rel="noopener">LINKEDIN</a>
+    <a href="#" target="_blank" rel="noopener">INSTAGRAM</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 EVANNVSL. ALL RIGHTS RESERVED.</span>
+  <a href="#hero" class="to-top">BACK TO TOP ↑</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
