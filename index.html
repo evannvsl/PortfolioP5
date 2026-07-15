@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>EVANNVSL — TAKE YOUR HEART</title>
+  <title>evannvsl</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+<base target="_blank">
 </head>
 <body>
 
@@ -27,6 +28,9 @@
 </div>
 <div id="bg-glow"></div>
 
+<!-- FLOATING POKER CARDS CONTAINER -->
+<div class="poker-cards-container" id="pokerCardsContainer" aria-hidden="true"></div>
+
 <!-- CURSOR -->
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
@@ -40,7 +44,6 @@
 </div>
 
 <!-- FLOATING DECORATIONS -->
-<div class="floating-badge" aria-hidden="true">◆ SECURE</div>
 <div class="rotating-text" aria-hidden="true">
   <svg viewBox="0 0 100 100"><path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
     <text><textPath href="#circlePath">TAKE YOUR HEART • PHANTOM THIEVES • </textPath></text>
@@ -53,8 +56,9 @@
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span></button>
   <nav class="menu" id="menu">
     <a href="#about"><em>◆</em> ABOUT</a>
-    <a href="#portfolio"><em>◆</em> WORK</a>
+    <a href="#portfolio"><em>◆</em> PORTFOLIO</a>
     <a href="#skills"><em>◆</em> SKILLS</a>
+    <a href="#qna"><em>◆</em> Q&A</a>
     <a href="#contact"><em>◆</em> CONTACT</a>
   </nav>
 </header>
@@ -64,10 +68,10 @@
   <div class="hero-slash" aria-hidden="true">
     <div class="slash-text">TAKE YOUR HEART</div>
   </div>
-  
+
   <!-- Character Cut-in dari gambar upload -->
   <div class="hero-cutin" aria-hidden="true">
-    <img src="mnt/agents/upload/Idk%20persona%20RAHHH.jpeg" alt="Joker Cut-in" class="cutin-img" id="cutinImg">
+    <img src="assets/EmmaVeil.jpg" alt="Joker Cut-in" class="cutin-img" id="cutinImg">
     <div class="cutin-flash"></div>
   </div>
 
@@ -83,13 +87,125 @@
       <a href="#contact" class="btn btn-ghost magnetic"><span>HIRE ME</span></a>
     </div>
   </div>
-  
+
   <div class="hero-scroll">SCROLL <span>↓</span></div>
   <div class="security-badge">◆ SECURE CONNECTION ◆</div>
 </section>
 
-<!-- STAR DIVIDER -->
-<div class="p5-star-divider" aria-hidden="true"></div>
+<!-- POKER CARD DIVIDER -->
+<div class="poker-divider" aria-hidden="true">
+  <div class="poker-track">
+    <div class="poker-card-mini">🂡</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃞</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="poker-card-mini">🂡</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃞</div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -97,7 +213,7 @@
   <div class="about-grid">
     <div class="about-visual reveal">
       <div class="about-frame">
-        <img src="mnt/agents/upload/persona%205%20wallpaper%20%E2%98%86.jpeg" alt="P5 Pattern" class="about-img">
+        <img src="assets/EmmaVeil.jpg" alt="P5 Pattern" class="about-img">
         <div class="about-frame-border"></div>
         <div class="about-frame-corner tl"></div>
         <div class="about-frame-corner tr"></div>
@@ -117,19 +233,131 @@
   </div>
 </section>
 
-<!-- STAR DIVIDER -->
-<div class="p5-star-divider" aria-hidden="true"></div>
+<!-- POKER CARD DIVIDER -->
+<div class="poker-divider poker-divider-reverse" aria-hidden="true">
+  <div class="poker-track">
+    <div class="poker-card-mini">🃞</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂡</div>
+    <!-- Duplicate -->
+    <div class="poker-card-mini">🃞</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂡</div>
+  </div>
+</div>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <div class="section-tag reveal"><span>◆</span> SELECTED WORK</div>
+  <div class="section-tag reveal"><span>◆</span> PORTFOLIO</div>
   <h2 class="section-heading reveal">PROJECT<br>HISTORY.</h2>
 
   <div class="work-grid">
     <article class="work-card reveal">
       <div class="work-media">
         <div class="work-img-placeholder">
-          <img src="mnt/agents/upload/1.jpeg" alt="Project 1" class="work-img">
+          <img src="assets/EmmaVeil.jpg" alt="Project 1" class="work-img">
           <div class="work-img-slash"></div>
         </div>
         <span class="work-num">01</span>
@@ -137,17 +365,17 @@
         <div class="work-security-tag">◆ SECURE</div>
       </div>
       <div class="work-info">
-        <h3>Nama Proyek Pertama</h3>
+        <h3>CODING PROJECT</h3>
         <p>Deskripsi singkat: masalah yang diselesaikan, peran kamu, dan hasil yang dicapai.</p>
-        <div class="work-tags"><span>WEB APP</span><span>REACT</span></div>
-        <a href="#" class="work-link magnetic">LIHAT DETAIL <i>→</i></a>
+        <div class="work-tags"><span>WEB APP</span><span>REACT</span><span>APPLICATION</span></div>
+        <a href="#" class="work-link magnetic">MORE INFORMATION <i>➜</i></a>
       </div>
     </article>
 
     <article class="work-card reveal">
       <div class="work-media">
         <div class="work-img-placeholder">
-          <img src="mnt/agents/upload/2.jpeg" alt="Project 2" class="work-img">
+          <img src="assets/EmmaVeil.jpg" alt="Project 2" class="work-img">
           <div class="work-img-slash"></div>
         </div>
         <span class="work-num">02</span>
@@ -155,7 +383,7 @@
         <div class="work-security-tag">◆ SECURE</div>
       </div>
       <div class="work-info">
-        <h3>Nama Proyek Kedua</h3>
+        <h3>BUG HUNTER</h3>
         <p>Konteks singkat kenapa proyek ini dibuat dan tantangan teknis utamanya.</p>
         <div class="work-tags"><span>MOBILE</span><span>PYTHON</span></div>
         <a href="#" class="work-link magnetic">LIHAT DETAIL <i>→</i></a>
@@ -179,11 +407,141 @@
         <a href="#" class="work-link magnetic">BACA SELENGKAPNYA <i>→</i></a>
       </div>
     </article>
+
+    <article class="work-card reveal">
+      <div class="work-media">
+        <div class="work-img-placeholder">
+          <img src="mnt/agents/upload/image.png" alt="Project 3" class="work-img">
+          <div class="work-img-slash"></div>
+        </div>
+        <span class="work-num">03</span>
+        <div class="work-halftone"></div>
+        <div class="work-security-tag">◆ SECURE</div>
+      </div>
+      <div class="work-info">
+        <h3>Nama Proyek Ketiga</h3>
+        <p>Riset, studi kasus, atau eksperimen teknis di luar proyek software biasa.</p>
+        <div class="work-tags"><span>RESEARCH</span><span>CASE STUDY</span></div>
+        <a href="#" class="work-link magnetic">BACA SELENGKAPNYA <i>→</i></a>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- STAR DIVIDER -->
-<div class="p5-star-divider" aria-hidden="true"></div>
+<!-- POKER CARD DIVIDER -->
+<div class="poker-divider" aria-hidden="true">
+  <div class="poker-track">
+    <div class="poker-card-mini">🂡</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃞</div>
+    <!-- Duplicate -->
+    <div class="poker-card-mini">🂡</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃞</div>
+  </div>
+</div>
 
 <!-- SKILLS -->
 <section id="skills">
@@ -224,8 +582,120 @@
   </div>
 </section>
 
-<!-- STAR DIVIDER -->
-<div class="p5-star-divider" aria-hidden="true"></div>
+<!-- POKER CARD DIVIDER -->
+<div class="poker-divider poker-divider-reverse" aria-hidden="true">
+  <div class="poker-track">
+    <div class="poker-card-mini">🃞</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂡</div>
+    <!-- Duplicate -->
+    <div class="poker-card-mini">🃞</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂡</div>
+  </div>
+</div>
 
 <!-- CHAT -->
 <section id="chat">
@@ -283,14 +753,126 @@
   </div>
 </section>
 
-<!-- STAR DIVIDER -->
-<div class="p5-star-divider" aria-hidden="true"></div>
+<!-- POKER CARD DIVIDER -->
+<div class="poker-divider" aria-hidden="true">
+  <div class="poker-track">
+    <div class="poker-card-mini">🂡</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃞</div>
+    <!-- Duplicate -->
+    <div class="poker-card-mini">🂡</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃞</div>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-security-grid" aria-hidden="true"></div>
   <div class="contact-glitch" aria-hidden="true"></div>
-  
+
   <div class="section-tag reveal light"><span>◆</span> CONTACT</div>
   <h2 class="contact-heading reveal">
     <span class="word">MARI</span>
@@ -305,6 +887,122 @@
     <a href="#" target="_blank" rel="noopener">INSTAGRAM</a>
   </div>
 </section>
+
+<!-- POKER CARD DIVIDER -->
+<div class="poker-divider poker-divider-reverse" aria-hidden="true">
+  <div class="poker-track">
+
+    <div class="poker-card-mini">🃞</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂡</div>
+    <!-- Duplicate -->
+    <div class="poker-card-mini">🃞</div>
+    <div class="poker-card-mini">🃝</div>
+    <div class="poker-card-mini">🃜</div>
+    <div class="poker-card-mini">🃛</div>
+    <div class="poker-card-mini">🃚</div>
+    <div class="poker-card-mini">🃙</div>
+    <div class="poker-card-mini">🃘</div>
+    <div class="poker-card-mini">🃗</div>
+    <div class="poker-card-mini">🃖</div>
+    <div class="poker-card-mini">🃕</div>
+    <div class="poker-card-mini">🃔</div>
+    <div class="poker-card-mini">🃓</div>
+    <div class="poker-card-mini">🃒</div>
+    <div class="poker-card-mini">🃑</div>
+    <div class="poker-card-mini">🃎</div>
+    <div class="poker-card-mini">🃍</div>
+    <div class="poker-card-mini">🃌</div>
+    <div class="poker-card-mini">🃋</div>
+    <div class="poker-card-mini">🃊</div>
+    <div class="poker-card-mini">🃉</div>
+    <div class="poker-card-mini">🃈</div>
+    <div class="poker-card-mini">🃇</div>
+    <div class="poker-card-mini">🃆</div>
+    <div class="poker-card-mini">🃅</div>
+    <div class="poker-card-mini">🃄</div>
+    <div class="poker-card-mini">🃃</div>
+    <div class="poker-card-mini">🃂</div>
+    <div class="poker-card-mini">🃁</div>
+    <div class="poker-card-mini">🂾</div>
+    <div class="poker-card-mini">🂽</div>
+    <div class="poker-card-mini">🂼</div>
+    <div class="poker-card-mini">🂻</div>
+    <div class="poker-card-mini">🂺</div>
+    <div class="poker-card-mini">🂸</div>
+    <div class="poker-card-mini">🂷</div>
+    <div class="poker-card-mini">🂶</div>
+    <div class="poker-card-mini">🂵</div>
+    <div class="poker-card-mini">🂴</div>
+    <div class="poker-card-mini">🂳</div>
+    <div class="poker-card-mini">🂲</div>
+    <div class="poker-card-mini">🂱</div>
+    <div class="poker-card-mini">🂮</div>
+    <div class="poker-card-mini">🂬</div>
+    <div class="poker-card-mini">🂫</div>
+    <div class="poker-card-mini">🂪</div>
+    <div class="poker-card-mini">🂩</div>
+    <div class="poker-card-mini">🂨</div>
+    <div class="poker-card-mini">🂧</div>
+    <div class="poker-card-mini">🂦</div>
+    <div class="poker-card-mini">🂥</div>
+    <div class="poker-card-mini">🂤</div>
+    <div class="poker-card-mini">🂣</div>
+    <div class="poker-card-mini">🂢</div>
+    <div class="poker-card-mini">🂡</div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>

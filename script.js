@@ -1,7 +1,7 @@
 /* ============================================================
    0. HELPERS
    ============================================================ */
-const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#$%01';
+const SCRAMBLE_CHARS = '!<>-_\/[]{}—=+*^?#$%01';
 const IS_MOBILE = window.matchMedia('(max-width:800px)').matches;
 const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -49,46 +49,46 @@ function wrapLeadingText(el) {
   return null;
 }
 
-/* ============================================================
-   1. PRELOADER
-   ============================================================ */
-(function preloader() {
-  const pre = document.getElementById('preloader');
-  const num = document.getElementById('preNum');
-  const barFill = document.getElementById('preBarFill');
-  const label = document.querySelector('.pre-label');
-  if (!pre || !num) return;
+// /* ============================================================
+//    1. PRELOADER
+//    ============================================================ */
+// (function preloader() {
+//   const pre = document.getElementById('preloader');
+//   const num = document.getElementById('preNum');
+//   const barFill = document.getElementById('preBarFill');
+//   const label = document.querySelector('.pre-label');
+//   if (!pre || !num) return;
 
-  const statuses = ['INITIALIZING', 'LOADING SYSTEM', 'SECURITY CHECK', 'DECRYPTING'];
-  let statusIndex = 0;
-  if (label) label.textContent = statuses[0];
-  const statusIv = setInterval(() => {
-    statusIndex = (statusIndex + 1) % statuses.length;
-    if (label) label.textContent = statuses[statusIndex];
-  }, 600);
+//   const statuses = ['INITIALIZING', 'LOADING SYSTEM', 'SECURITY CHECK', 'DECRYPTING'];
+//   let statusIndex = 0;
+//   if (label) label.textContent = statuses[0];
+//   const statusIv = setInterval(() => {
+//     statusIndex = (statusIndex + 1) % statuses.length;
+//     if (label) label.textContent = statuses[statusIndex];
+//   }, 600);
 
-  const totalDuration = 2500;
-  const stepTime = 45;
-  const steps = totalDuration / stepTime;
-  let step = 0;
+//   const totalDuration = 2500;
+//   const stepTime = 45;
+//   const steps = totalDuration / stepTime;
+//   let step = 0;
 
-  const iv = setInterval(() => {
-    step++;
-    const progress = Math.min(1, step / steps);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const count = Math.floor(eased * 100);
-    num.textContent = String(count).padStart(2, '0');
-    if (barFill) barFill.style.width = count + '%';
-    if (progress >= 1) {
-      clearInterval(iv); clearInterval(statusIv);
-      if (label) label.textContent = 'READY';
-    }
-  }, stepTime);
+//   const iv = setInterval(() => {
+//     step++;
+//     const progress = Math.min(1, step / steps);
+//     const eased = 1 - Math.pow(1 - progress, 3);
+//     const count = Math.floor(eased * 100);
+//     num.textContent = String(count).padStart(2, '0');
+//     if (barFill) barFill.style.width = count + '%';
+//     if (progress >= 1) {
+//       clearInterval(iv); clearInterval(statusIv);
+//       if (label) label.textContent = 'READY';
+//     }
+//   }, stepTime);
 
-  window.addEventListener('load', () => {
-    setTimeout(() => pre.classList.add('done'), totalDuration + 300);
-  });
-})();
+//   window.addEventListener('load', () => {
+//     setTimeout(() => pre.classList.add('done'), totalDuration + 300);
+//   });
+// })();
 
 /* ============================================================
    2. CURSOR
@@ -447,4 +447,35 @@ function wrapLeadingText(el) {
     const scrolled = window.scrollY;
     cutin.style.transform = `translateY(${scrolled * 0.15}px)`;
   }, { passive: true });
+})();
+
+/* ============================================================
+   18. FLOATING POKER CARDS
+   ============================================================ */
+(function floatingPokerCards() {
+  if (IS_MOBILE || PREFERS_REDUCED) return;
+  const container = document.getElementById('pokerCardsContainer');
+  if (!container) return;
+
+  const pokerCards = ['🂡','🂢','🂣','🂤','🂥','🂦','🂧','🂨','🂩','🂪','🂫','🂬','🂮','🂱','🂲','🂳','🂴','🂵','🂶','🂷','🂸','🂺','🂻','🂼','🂽','🂾','🃁','🃂','🃃','🃄','🃅','🃆','🃇','🃈','🃉','🃊','🃋','🃌','🃍','🃎','🃑','🃒','🃓','🃔','🃕','🃖','🃗','🃘','🃙','🃚','🃛','🃜','🃝','🃞'];
+
+  const count = 25;
+
+  for (let i = 0; i < count; i++) {
+    const card = document.createElement('div');
+    card.className = 'poker-card-float';
+    card.textContent = pokerCards[Math.floor(Math.random() * pokerCards.length)];
+
+    const left = Math.random() * 100;
+    const delay = Math.random() * 15;
+    const duration = 8 + Math.random() * 12;
+    const size = 30 + Math.random() * 40;
+
+    card.style.left = `${left}%`;
+    card.style.animationDelay = `${delay}s`;
+    card.style.animationDuration = `${duration}s`;
+    card.style.fontSize = `${size}px`;
+
+    container.appendChild(card);
+  }
 })();
