@@ -1,0 +1,39 @@
+/* ============================================================
+   css/components/ticker.css
+   ============================================================ */
+.p5-ticker {
+  position:relative; z-index:2; overflow:hidden;
+  height:64px;
+  background:var(--black);
+  border-top:2px solid var(--red); border-bottom:2px solid var(--red);
+  display:flex; align-items:center;
+}
+.p5-ticker-track {
+  display:flex; align-items:center; white-space:nowrap;
+  animation:p5TickerScroll 32s linear infinite;
+  will-change:transform;
+}
+.p5-ticker-reverse .p5-ticker-track { animation-direction:reverse; }
+.p5-ticker-track span {
+  display:inline-flex; align-items:center; gap:14px;
+  font-family:var(--f-menu); font-weight:400;
+  font-size:20px; letter-spacing:.1em; text-transform:uppercase;
+  padding:0 28px; color:var(--white);
+  border-right:2px solid rgba(225,6,0,0.4);
+}
+.p5-ticker-track span em {
+  font-style:normal; color:var(--red); font-size:14px;
+}
+.p5-ticker-track span:nth-child(odd) { color:var(--red); }
+.p5-ticker-track span:nth-child(odd) em { color:var(--white); }
+@keyframes p5TickerScroll {
+  from { transform:translateX(0); }
+  to   { transform:translateX(-50%); }
+}
+@media (max-width:700px) {
+  .p5-ticker { height:46px; }
+  .p5-ticker-track span { font-size:14px; padding:0 18px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .p5-ticker-track { animation:none; }
+}

@@ -1,0 +1,52 @@
+/* ============================================================
+   css/components/preloader.css
+   ============================================================ */
+#preloader {
+  position:fixed; inset:0; z-index:10000;
+  background:var(--black);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  transition:transform .8s cubic-bezier(.76,0,.24,1);
+  overflow:hidden;
+}
+#preloader.done { transform:translateY(-100%); }
+#preloader::before {
+  content:''; position:absolute; inset:-20%;
+  background:repeating-linear-gradient(135deg, rgba(225,6,0,.06) 0 2px, transparent 2px 14px);
+  background-size:300px 300px;
+  animation:stripeMove 2s linear infinite;
+  pointer-events:none;
+}
+@keyframes stripeMove { from{background-position:0 0;} to{background-position:300px 300px;} }
+
+.pre-count {
+  font-family:var(--f-display); font-size:80px; color:var(--white);
+  letter-spacing:.04em; animation:preGlitch 1.5s steps(1) infinite;
+}
+.pre-count span { color:var(--red); }
+.pre-percent { font-size:32px; vertical-align:super; margin-left:4px; }
+@keyframes preGlitch {
+  0%,100% { text-shadow:none; transform:translate(0,0); }
+  20% { text-shadow:-3px 0 var(--red), 3px 0 rgba(255,255,255,.6); transform:translate(-2px,1px); }
+  22% { text-shadow:3px 0 var(--red), -3px 0 rgba(255,255,255,.6); transform:translate(2px,-1px); }
+  24% { text-shadow:none; transform:translate(0,0); }
+}
+.pre-label {
+  font-family:var(--f-menu); font-size:13px; letter-spacing:.25em;
+  color:var(--grey-light); text-transform:uppercase;
+}
+.security-status {
+  font-family:var(--f-menu); font-size:11px; letter-spacing:.2em;
+  color:var(--red); text-transform:uppercase;
+  animation:blinkWarning 0.8s step-end infinite;
+}
+@keyframes blinkWarning { 0%,100% { opacity:1; } 50% { opacity:0.1; } }
+
+.pre-bar-track {
+  margin-top:20px; width:260px; height:3px;
+  background:rgba(255,255,255,.06); position:relative; overflow:hidden;
+}
+.pre-bar-fill {
+  position:absolute; left:0; top:0; height:100%; width:0%;
+  background:var(--red); box-shadow:0 0 10px var(--red);
+  transition:width .05s linear;
+}

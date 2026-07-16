@@ -1,0 +1,63 @@
+/* ============================================================
+   css/components/header.css
+   ============================================================ */
+header {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 40px; background:transparent;
+  transition:background .35s ease, padding .35s ease;
+  background:linear-gradient(to bottom, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0) 100%);
+}
+header.scrolled {
+  background:rgba(10,10,10,0.95); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.04); padding:14px 40px;
+}
+.logo {
+  font-family:var(--f-display); font-size:22px; letter-spacing:.06em;
+  color:var(--white); text-shadow:0 0 30px rgba(225,6,0,0.2);
+  text-decoration:none; display:inline-block;
+}
+.logo .dot { color:var(--red); }
+
+nav.menu { display:flex; gap:32px; }
+nav.menu a {
+  font-family:var(--f-body); font-size:13px; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:rgb(255,255,255); position:relative; padding-bottom:2px;
+  text-decoration:none; transition:color .25s;
+}
+nav.menu a em { font-style:normal; color:var(--red); margin-right:4px; }
+nav.menu a::after {
+  content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+  background:var(--red); transition:width .25s ease;
+}
+nav.menu a:hover { color:#fff; }
+nav.menu a:hover::after { width:100%; }
+
+.menu-toggle {
+  display:none; width:24px; height:16px; position:relative;
+  background:none; border:none; z-index:600; cursor:none;
+}
+.menu-toggle span {
+  position:absolute; left:0; width:100%; height:2px;
+  background:var(--red); transition:transform .3s ease, top .3s ease;
+}
+.menu-toggle span:first-child { top:0; }
+.menu-toggle span:last-child { top:14px; }
+.menu-toggle.open span:first-child { top:7px; transform:rotate(45deg); }
+.menu-toggle.open span:last-child { top:7px; transform:rotate(-45deg); }
+
+@media (max-width:800px) {
+  nav.menu {
+    position:fixed; inset:0 0 0 25%; background:var(--black);
+    flex-direction:column; justify-content:center; gap:32px;
+    padding:40px; transform:translateX(100%);
+    transition:transform .45s cubic-bezier(.76,0,.24,1);
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+    border-left:3px solid var(--red);
+  }
+  nav.menu.open { transform:translateX(0); }
+  nav.menu a { color:var(--white); font-size:20px; font-family:var(--f-menu); letter-spacing:.08em; }
+  .menu-toggle { display:block; }
+  header.scrolled { padding:18px 24px; }
+}

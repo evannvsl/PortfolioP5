@@ -1,0 +1,14 @@
+/* ============================================================
+   css/components/mobile.css (opsional tambahan)
+   ============================================================ */
+@media (max-width:800px) {
+  #bg-glow { width:250px; height:250px; filter:blur(50px); }
+  .noise { opacity:0.3; }
+  .matrix-code { display:none; }
+  .slash-bg { display:none; }
+  header.scrolled { backdrop-filter:none; }
+  .chat-arena { backdrop-filter:none; }
+  .hero-slash { opacity:0.6; }
+  .skill-radar { transform:scale(0.8); }
+}
+a, button { cursor:none; }
