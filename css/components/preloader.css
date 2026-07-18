@@ -1,7 +1,4 @@
-/* ============================================================
-   css/components/preloader.css
-   ============================================================ */
-#preloader {
+/* #preloader {
   position:fixed; inset:0; z-index:10000;
   background:var(--black);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
@@ -49,4 +46,4 @@
   position:absolute; left:0; top:0; height:100%; width:0%;
   background:var(--red); box-shadow:0 0 10px var(--red);
   transition:width .05s linear;
-}
+} */

@@ -3,14 +3,14 @@
    ============================================================ */
 @font-face {
   font-family: 'Persona5';
-  src: url('../assets/fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
+  src: url('/assets/font/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'P5Menu';
-  src: url('../assets/fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
+  src: url('/assets/font/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -24,8 +24,9 @@
   --red-bright:  #ff1a1a;
   --grey:        #6e6e6e;
   --grey-light:  #dcdcdc;
-  --f-display:   'Anton', 'Persona5', sans-serif;
-  --f-menu:      'P5Menu', 'Anton', sans-serif;
+  --f-special:   'Persona5', 'P5Menu', sans-serif;
+  --f-display:   'Anton', sans-serif;
+  --f-menu:      'Anton', sans-serif;
   --f-body:      'Inter', sans-serif;
   --bg-start:    #080808;
   --bg-end:      #121212;
@@ -38,7 +39,7 @@ body {
   color: var(--white);
   font-family: var(--f-body);
   overflow-x: hidden;
-  cursor: none;
+  cursor: default; /*===================================== */
   min-height: 100vh;
   position: relative;
   font-size: 16px;

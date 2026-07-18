@@ -1,18 +1,25 @@
-/* ============================================================
-   css/components/chat.css
-   ============================================================ */
 #chat { background:transparent; padding-bottom:80px; }
 .chat-arena {
-  max-width:720px; margin:0 auto; background:var(--red);
+  max-width:720px; margin:0 auto; background:#0a0a0a;
   padding:32px 24px; position:relative; overflow:hidden;
   box-shadow:0 20px 60px rgba(0,0,0,0.8);
   clip-path:polygon(0 0, 100% 0, 100% 96%, 96% 100%, 0 100%);
 }
+/* pattern image dengan opacity dikurangi */
 .chat-arena::before {
   content:''; position:absolute; inset:0;
-  background-image:repeating-linear-gradient(135deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 14px);
-  pointer-events:none;
+  background: url('../../assets/img/pattern.jpeg') center center / cover no-repeat;
+  opacity:0.15;
+  pointer-events:none; z-index:0;
 }
+/* scanline overlay */
+.chat-arena::after {
+  content:''; position:absolute; inset:0;
+  background-image:repeating-linear-gradient(135deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 14px);
+  pointer-events:none; z-index:1;
+}
+/* pastikan konten di atas pseudo-elements */
+.chat-arena > * { position:relative; z-index:2; }
 
 .chat-bubble {
   opacity:0;
@@ -48,8 +55,8 @@
   color:#0a0a0a; padding:20px 26px 24px 30px;
 }
 .bubble-name {
-  font-family:var(--f-menu); font-weight:400; color:var(--red);
-  font-size:12px; text-transform:uppercase; letter-spacing:.12em;
+  font-family:var(--f-special); font-weight:400; color:var(--black);
+  font-size:12px; text-transform:none; letter-spacing:.12em;
   display:block; margin-bottom:4px;
 }
 .chat-bubble.right .bubble-name { color:var(--red-dark); }

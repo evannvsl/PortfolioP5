@@ -11,9 +11,18 @@ section {
   font-family:var(--f-menu); font-size:14px; font-weight:400;
   letter-spacing:.22em; text-transform:uppercase;
   display:flex; align-items:center; gap:10px;
-  color:var(--grey); margin-bottom:20px;
+  color:var(--White); margin-bottom:20px; line-height:1;
 }
-.section-tag span { color:var(--red); font-size:18px; }
+.section-tag span {
+  color: var(--red);
+  margin-top: -4.5px;  /* samakan dengan teks supaya baseline rata */
+  font-size: 21px;       /* samakan dengan teks supaya baseline rata */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  letter-spacing: 0;     /* reset letter-spacing supaya icon tidak ada extra space */
+}
 .section-tag.light { color:#888; }
 
 .section-heading {
