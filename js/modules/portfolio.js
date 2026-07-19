@@ -1,31 +1,32 @@
 // ============================================================
-// js/modules/portfolio.js (render data)
+// js/modules/portfolio.js
 // ============================================================
-import { projects } from '../data/projects.js';
+import { openProject } from './projectdetail.js';
 
 export function renderPortfolio() {
-  const grid = document.getElementById('workGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  projects.forEach(p => {
-    const article = document.createElement('article');
-    article.className = 'work-card reveal';
-    article.innerHTML = `
-      <div class="work-media">
-        <div class="work-img-placeholder">
-          <div class="work-img-slash"></div>
-        </div>
-        <span class="work-num">${p.num}</span>
-        <div class="work-halftone"></div>
-        <div class="work-security-tag">◆ SECURE</div>
-      </div>
-      <div class="work-info">
-        <h3>${p.title}</h3>
-        <p>${p.desc}</p>
-        <div class="work-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
-        <a href="${p.link}" class="work-link magnetic">MORE INFORMATION <i>➜</i></a>
-      </div>
-    `;
-    grid.appendChild(article);
+  // Cards are hardcoded in HTML — just wire up click handlers
+  const cards = document.querySelectorAll('.work-card[data-project-id]');
+  cards.forEach(card => {
+    const id = parseInt(card.dataset.projectId, 10);
+    if (!id) return;
+
+    card.style.cursor = 'pointer';
+
+    // Click anywhere on card opens detail, EXCEPT if user clicks a real <a>
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a[href]:not([href="#"])')) return;
+      openProject(id);
+    });
+
+    // Keyboard accessibility
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `View project details`);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProject(id);
+      }
+    });
   });
 }

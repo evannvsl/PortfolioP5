@@ -1,15 +1,12 @@
-/* ============================================================
-   css/components/footer.css
-   ============================================================ */
 footer {
   background:var(--black); color:#666;
   display:flex; align-items:center; justify-content:space-between;
-  padding:24px 40px 36px; font-size:12px; font-weight:600;
+  padding:24px 40px 36px; font-size:11px; font-weight:600;
   letter-spacing:.05em; flex-wrap:wrap; gap:12px;
   border-top:1px solid #1a1a1a; z-index:1; position:relative;
 }
 footer .to-top {
-  color:#888; text-decoration:none; font-family:var(--f-menu);
-  transition:color .2s ease;
+  color:#888; text-decoration:none; font-family:var(--f-display); font-size:11px; font-weight:100;
+  transition:color 1ms ease;
 }
 footer .to-top:hover { color:var(--red); }

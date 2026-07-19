@@ -8,7 +8,6 @@
 .about-frame {
   position:relative; width:100%; aspect-ratio:1;
   background:#0e0e0e; overflow:hidden;
-  clip-path:polygon(8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%, 0 8%);
 }
 .about-img {
   width:100%; height:100%; object-fit:cover;
@@ -16,12 +15,12 @@
 }
 .about-frame:hover .about-img { transform:scale(1.05); opacity:1; }
 .about-frame-border {
-  position:absolute; inset:12px; border:2px solid var(--red); pointer-events:none;
+  position:absolute; inset:12px; border:2px solid var(--white); pointer-events:none;
   opacity:0.5; transition:opacity 0.3s;
 }
 .about-frame:hover .about-frame-border { opacity:1; }
 .about-frame-corner {
-  position:absolute; width:20px; height:20px; border:3px solid var(--red);
+  position:absolute; width:20px; height:20px; border:3px solid var(--red); 
   pointer-events:none; transition:transform 0.3s;
 }
 .about-frame-corner.tl { top:6px; left:6px; border-right:none; border-bottom:none; }

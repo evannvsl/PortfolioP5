@@ -23,7 +23,7 @@ section {
   flex-shrink: 0;
   letter-spacing: 0;     /* reset letter-spacing supaya icon tidak ada extra space */
 }
-.section-tag.light { color:#888; }
+.section-tag.light { color:#ffffff; }
 
 .section-heading {
   font-family:var(--f-display); font-size:clamp(42px,7vw,90px);

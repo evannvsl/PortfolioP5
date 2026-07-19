@@ -1,0 +1,58 @@
+/* ============================================================
+   css/components/projectdetail/hero.css
+   Hero image, diagonal slash, dan gradient overlay
+   ============================================================ */
+
+.pd-hero-img {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.pd-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: grayscale(0.2) contrast(1.1);
+  transition: opacity 0.4s, transform 0.6s ease;
+}
+
+#project-overlay.is-open .pd-hero-img img {
+  transform: scale(1.04);
+}
+
+/* Diagonal slash merah ala P5 */
+.pd-img-slash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(225, 6, 0, 0.35) 40%,
+    rgba(225, 6, 0, 0.35) 55%,
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+/* Gradient fade ke bawah */
+.pd-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--black) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .pd-hero-img { height: 200px; }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pd-hero-img img { transition: none; }
+}

@@ -21,3 +21,9 @@
 @import url('components/contact.css');
 @import url('components/footer.css');
 
+/* Project Detail Overlay — dipecah per bagian untuk kemudahan edit */
+@import url('components/projectdetail/overlay.css');
+@import url('components/projectdetail/topbar.css');
+@import url('components/projectdetail/hero.css');
+@import url('components/projectdetail/body.css');
+

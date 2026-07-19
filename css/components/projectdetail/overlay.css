@@ -1,0 +1,109 @@
+/* ============================================================
+   css/components/projectdetail/overlay.css
+   Overlay container, backdrop, dan panel slide-in
+   ============================================================ */
+
+/* ── Overlay container ────────────────────────────────────── */
+#project-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+#project-overlay.is-open {
+  pointer-events: all;
+  visibility: visible;
+}
+
+/* ── Backdrop ─────────────────────────────────────────────── */
+.pd-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.4s ease;
+  cursor: pointer;
+}
+
+#project-overlay.is-open .pd-backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* ── Panel (slides in from right) ────────────────────────── */
+.pd-panel {
+  position: relative;
+  z-index: 1;
+  width: min(680px, 100vw);
+  height: 100vh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 0.8, 0.3, 1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) transparent;
+
+  /* Double-border left edge ala P5 */
+  border-left: 4px solid var(--red);
+  box-shadow: -8px 0 0 var(--black), -12px 0 0 var(--red), -40px 0 80px rgba(0,0,0,0.8);
+}
+
+.pd-panel::-webkit-scrollbar       { width: 4px; }
+.pd-panel::-webkit-scrollbar-track { background: transparent; }
+.pd-panel::-webkit-scrollbar-thumb { background: var(--red); }
+
+#project-overlay.is-open .pd-panel {
+  transform: translateX(0);
+}
+
+/* is-closing diset langsung di .pd-panel via JS */
+.pd-panel.is-closing {
+  transform: translateX(100%) !important;
+  transition: transform 0.38s cubic-bezier(0.7, 0, 0.84, 0) !important;
+}
+
+/* ── Halftone decoration strip kiri panel ────────────────── */
+.pd-panel::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: min(680px, 100vw);
+  width: 40px;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--red), var(--red) 4px,
+    transparent 4px, transparent 12px
+  );
+  opacity: 0;
+  transition: opacity 0.45s 0.2s;
+  pointer-events: none;
+}
+
+#project-overlay.is-open .pd-panel::before {
+  opacity: 0.15;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .pd-panel {
+    width: 100vw;
+    border-left: none;
+    box-shadow: none;
+  }
+  .pd-panel::before { display: none; }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pd-panel,
+  .pd-backdrop {
+    transition: none;
+  }
+}
