@@ -1,14 +1,9 @@
-// ============================================================
-// js/data/projects/creative.js
-// Project: Creative & Art
-// Edit file ini untuk update konten project ketiga
-// ============================================================
 export const projectCreative = {
   id: 3,
   num: '03',
   title: 'CREATIVE & ART',
   desc: 'Riset, studi kasus, atau eksperimen teknis di luar proyek software biasa.',
-  tags: ['CINEMATOGRAPHY', 'FOTOGRAPHY', 'VIDEO EDITING', 'GRAPHIC DESIGN', 'MOTION GRAPHICS'],
+  tags: ['CINEMATOGRAPHY', 'PHOTOGRAPHY', 'VIDEO EDITING', 'GRAPHIC DESIGN', 'MOTION GRAPHICS'],
   img: 'assets/img/mio.png',
   securityTag: 'MY MINE GWEHJ',
   detail: {

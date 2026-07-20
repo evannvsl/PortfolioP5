@@ -1,8 +1,3 @@
-// ============================================================
-// js/data/projects/code.js
-// Project: Code | Data & Security
-// Edit file ini untuk update konten project pertama
-// ============================================================
 export const projectCode = {
   id: 1,
   num: '01',
