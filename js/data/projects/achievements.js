@@ -9,7 +9,7 @@ export const projectAchievements = {
   title: 'MY ACHIEVEMENTS',
   desc: 'Konteks singkat kenapa proyek ini dibuat dan tantangan teknis utamanya.',
   tags: ['COMPETITION', 'AWARD', 'CERTIFICATION', 'RESEARCH'],
-  img: 'assets/img/kumiko.jpg',
+  img: 'assets/img/gif/edogawa.gif',
   securityTag: 'WELL WELL WELL',
   detail: {
     year: '2022–2024',

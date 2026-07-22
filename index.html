@@ -12,12 +12,42 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="css/main.css" />
+  <!-- Battle Transition -->
+  <link rel="stylesheet" href="css/components/battle-transition.css" />
 </head>
 <body>
 
   <!-- ===== DYNAMIC LAYERS ===== -->
   <div id="breach-overlay" aria-hidden="true"></div>
   <div id="chromatic-layer" aria-hidden="true"></div>
+
+  <!-- ===== BATTLE TRANSITION OVERLAY ===== -->
+  <div id="battle-transition" aria-hidden="true" aria-live="polite">
+    <!-- Layer 1: diagonal slash sweep -->
+    <div class="bt-slash" aria-hidden="true"></div>
+    <!-- Layer 2: panel hitam dari kiri -->
+    <div class="bt-panel-left" aria-hidden="true"></div>
+    <!-- Layer 3: panel hitam dari kanan -->
+    <div class="bt-panel-right" aria-hidden="true"></div>
+    <!-- Layer 4: stripe diagonal overlay -->
+    <div class="bt-center-stripe" aria-hidden="true"></div>
+    <!-- Layer 5: red eye spotlight -->
+    <div class="bt-eye" aria-hidden="true"></div>
+    <!-- Layer 6: halftone dots burst -->
+    <div class="bt-halftone" aria-hidden="true"></div>
+    <!-- Layer 7: chromatic aberration -->
+    <div class="bt-chromatic" aria-hidden="true"></div>
+    <!-- Layer 8: teks tengah -->
+    <div class="bt-text-wrap" aria-hidden="true">
+      <span class="bt-text-main">TAKE YOUR HEART</span>
+      <span class="bt-text-sub">◆ PHANTOM THIEVES ◆</span>
+    </div>
+    <!-- Layer 9: final white flash wipe -->
+    <div class="bt-flash" aria-hidden="true"></div>
+  </div>
+
+  <!-- ===== SKILL POPUP OVERLAY ===== -->
+  <div id="skill-overlay" aria-hidden="true"></div>
 
   <!-- ===== BACKGROUND SYSTEM ===== -->
   <div id="bg-layer">
@@ -140,7 +170,7 @@
       </div>
       <div class="work-info">
         <h3>CODE | DATA & SECURITY</h3>
-        <p>Deskripsi singkat: masalah yang diselesaikan, peran kamu, dan hasil yang dicapai.</p>
+        <p>besok aja</p>
         <div class="work-tags"><span>WEB</span><span>APPS</span><span>DATABASE</span><span>SECURITY</span><span>ETHICAL HACKING</span><span>BUG HUNTING</span><span>CRYPTOGRAPHY</span></div>
         <span class="work-link">MORE INFORMATION <i>➜</i></span>
       </div>
@@ -166,7 +196,7 @@
     <article class="work-card reveal" data-project-id="3">
       <div class="work-media">
         <div class="work-img-placeholder">
-          <img src="assets/img/gif/chiyo.gif" alt="Creative and Artistic" class="about-img" />
+          <img src="assets/img/Kasumi p5.png" alt="Creative and Artistic" class="about-img" />
         </div>
         <span class="work-num">03</span>
         <div class="work-halftone"></div>
@@ -184,7 +214,7 @@
     <article class="work-card reveal" data-project-id="4">
       <div class="work-media">
         <div class="work-img-placeholder">
-          <img src="assets/img/gif/my goat.gif" alt="Tech and Hardware" class="about-img" />
+          <img src="assets/img/gif/edogawa.gif" alt="Tech and Hardware" class="about-img" />
         </div>
         <span class="work-num">04</span>
         <div class="work-halftone"></div>
@@ -246,7 +276,7 @@
     <div class="skills-grid" id="skillsGrid">
 
       <!-- FRONTEND -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="1">
         <!-- Visual banner -->
         <div class="skill-card-visual">
           <img src="assets/img/gif/reina.gif" alt="" class="sc-img" aria-hidden="true" />
@@ -277,9 +307,9 @@
       </div>
 
       <!-- BACKEND -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="2">
         <div class="skill-card-visual">
-          <img src="assets/img/gif/makise.gif" alt="" class="sc-img" aria-hidden="true" />
+          <img src="assets/img/gif/lain.gif" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
           <div class="sc-halftone" aria-hidden="true"></div>
           <span class="sc-bignum" aria-hidden="true">02</span>
@@ -306,9 +336,9 @@
       </div>
 
       <!-- LANGUAGES -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="3">
         <div class="skill-card-visual">
-          <img src="assets/img/Makise Sigma.jpeg" alt="" class="sc-img" aria-hidden="true" />
+          <img src="assets/img/gif/Viqorique.gif" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
           <div class="sc-halftone" aria-hidden="true"></div>
           <span class="sc-bignum" aria-hidden="true">03</span>
@@ -334,9 +364,9 @@
       </div>
 
       <!-- SECURITY -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="4">
         <div class="skill-card-visual">
-          <img src="assets/img/Oumae.jpg" alt="" class="sc-img" aria-hidden="true" />
+          <img src="assets/img/gif/Vermouth.gif" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
           <div class="sc-halftone" aria-hidden="true"></div>
           <span class="sc-bignum" aria-hidden="true">04</span>
@@ -363,9 +393,9 @@
       </div>
 
       <!-- CREATIVE / DESIGN -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="5">
         <div class="skill-card-visual">
-          <img src="assets/img/mio.png" alt="" class="sc-img" aria-hidden="true" />
+          <img src="assets/img/gif/Vermouth.gif" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
           <div class="sc-halftone" aria-hidden="true"></div>
           <span class="sc-bignum" aria-hidden="true">05</span>
@@ -392,7 +422,7 @@
       </div>
 
       <!-- HARDWARE & ELECTRONICS -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="6">
         <div class="skill-card-visual">
           <img src="assets/img/kumiko.jpg" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
@@ -420,7 +450,7 @@
       </div>
 
       <!-- TOOLS & DEVOPS -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="7">
         <div class="skill-card-visual">
           <img src="assets/img/shinji.jpeg" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
@@ -449,7 +479,7 @@
       </div>
 
       <!-- SOFT SKILLS -->
-      <div class="skill-card reveal">
+      <div class="skill-card reveal" data-skill-id="8">
         <div class="skill-card-visual">
           <img src="assets/img/bg2.jpg" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
@@ -560,7 +590,7 @@
   <div class="p5-ticker" aria-hidden="true"></div>
 
   <!-- ===== CONTACT ===== -->
-  <section id="contact">
+  <section id="contact" img="assets/img/gif/chiyo.gif">
     <div class="contact-security-grid" aria-hidden="true"></div>
     <div class="contact-glitch" aria-hidden="true"></div>
 
@@ -584,9 +614,6 @@
     <span>© 2026 EVANNVSL ALL RIGHTS RESERVED.</span>
     <a href="#hero" class="to-top">BACK TO TOP ↑</a>
   </footer>
-
-  <!-- ===== PROJECT DETAIL OVERLAY ===== -->
-  <div id="project-overlay" aria-hidden="true"></div>
 
   <!-- ===== JAVASCRIPT MODULE ===== -->
   <script type="module" src="js/main.js"></script>

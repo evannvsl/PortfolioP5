@@ -21,7 +21,8 @@ import { initTicker } from './modules/ticker.js';
 import { renderPortfolio } from './modules/portfolio.js';
 import { renderSkills } from './modules/skills.js';
 import { renderChat } from './modules/chatdata.js';
-import { initProjectDetail } from './modules/projectdetail.js';
+import { initBattleTransition } from './modules/battle-transition.js';
+import { initSkillPopup } from './modules/skill-popup.js';
 
 // Inisialisasi semua modul
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,5 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPortfolio();
   renderSkills();
   renderChat();
-  initProjectDetail();
+  initBattleTransition();
+  initSkillPopup();
 });

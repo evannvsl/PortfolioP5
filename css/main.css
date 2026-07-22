@@ -27,3 +27,6 @@
 @import url('components/projectdetail/hero.css');
 @import url('components/projectdetail/body.css');
 
+
+/* Skill Popup Overlay */
+@import url('components/skill-popup.css');

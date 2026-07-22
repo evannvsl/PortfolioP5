@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Project Detail — evannvsl</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Project page styles -->
+  <link rel="stylesheet" href="css/project.css" />
+  <!-- Transition styles (shared dengan index.html) -->
+  <link rel="stylesheet" href="css/components/battle-transition.css" />
+</head>
+<body>
+
+  <!-- ===== BACKGROUND ===== -->
+  <div id="bg-layer" aria-hidden="true">
+    <div class="noise"></div>
+    <div class="scan-line" id="scan1"></div>
+    <div class="scan-line" id="scan2"></div>
+  </div>
+
+  <!-- ===== CURSOR ===== -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ===== DECORATIVE STRIPE ===== -->
+  <div class="proj-stripe" aria-hidden="true"></div>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="proj-topbar">
+    <div class="proj-topbar-left">
+      <span class="proj-num">01</span>
+      <span class="proj-slash" aria-hidden="true"></span>
+      <span class="proj-category">PROJECT</span>
+    </div>
+    <button class="proj-back-btn" id="proj-back" aria-label="Kembali ke portfolio">
+      <em class="proj-back-arrow">←</em>
+      <span>BACK</span>
+    </button>
+  </header>
+
+  <!-- ===== HERO IMAGE ===== -->
+  <div class="proj-hero" aria-hidden="true">
+    <img src="" alt="" class="proj-hero-img" />
+    <div class="proj-hero-overlay"></div>
+    <div class="proj-hero-slash"></div>
+    <span class="proj-hero-num" aria-hidden="true">01</span>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="proj-page" id="proj-main">
+
+    <!-- Title & meta -->
+    <div class="proj-title-block proj-section">
+      <h1 class="proj-title">PROJECT TITLE</h1>
+      <div class="proj-meta-row">
+        <span class="proj-meta-item">
+          <em>YEAR</em>
+          <span class="proj-meta-year">—</span>
+        </span>
+        <span class="proj-meta-sep" aria-hidden="true">◆</span>
+        <span class="proj-meta-item">
+          <em>ROLE</em>
+          <span class="proj-meta-role">—</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="proj-tags proj-section" aria-label="Tags"></div>
+
+    <!-- Sections -->
+    <div class="proj-sections">
+
+      <!-- Overview -->
+      <section class="proj-section" aria-labelledby="lbl-overview">
+        <h2 class="proj-section-label" id="lbl-overview">OVERVIEW</h2>
+        <p class="proj-overview"></p>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="proj-section" aria-labelledby="lbl-stack">
+        <h2 class="proj-section-label" id="lbl-stack">TECH STACK</h2>
+        <div class="proj-stack"></div>
+      </section>
+
+      <!-- Highlights -->
+      <section class="proj-section" aria-labelledby="lbl-highlights">
+        <h2 class="proj-section-label" id="lbl-highlights">HIGHLIGHTS</h2>
+        <ul class="proj-highlights"></ul>
+      </section>
+
+      <!-- Links -->
+      <section class="proj-section" aria-labelledby="lbl-links">
+        <h2 class="proj-section-label" id="lbl-links">LINKS</h2>
+        <div class="proj-links"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== BOTTOM BAR ===== -->
+  <div class="proj-bottombar" aria-hidden="true">
+    <span class="proj-bottombar-num">◆ 01 / 04</span>
+    <span>CONFIDENTIAL</span>
+    <span>EVANNVSL.DEV</span>
+  </div>
+
+  <!-- ===== CLOSING TRANSITION OVERLAY ===== -->
+  <div id="close-transition" aria-hidden="true">
+    <div class="ct-slash"       aria-hidden="true"></div>
+    <div class="ct-panel-left"  aria-hidden="true"></div>
+    <div class="ct-panel-right" aria-hidden="true"></div>
+    <div class="ct-stripe"      aria-hidden="true"></div>
+    <div class="ct-chromatic"   aria-hidden="true"></div>
+    <div class="ct-text-wrap"   aria-hidden="true">
+      <span class="ct-text-main">MISSION COMPLETE</span>
+      <span class="ct-text-sub">◆ RETURNING TO BASE ◆</span>
+    </div>
+  </div>
+
+  <!-- Script (ES module) -->
+  <script type="module" src="js/project.js"></script>
+</body>
+</html>

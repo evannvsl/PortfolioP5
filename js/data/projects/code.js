@@ -4,7 +4,7 @@ export const projectCode = {
   title: 'CODE | DATA & SECURITY',
   desc: 'Deskripsi singkat: masalah yang diselesaikan, peran kamu, dan hasil yang dicapai.',
   tags: ['WEB', 'APPS', 'DATABASE', 'SECURITY', 'ETHICAL HACKING', 'BUG HUNTING', 'CRYPTOGRAPHY'],
-  img: 'assets/img/EmmaVeil.jpg',
+  img: 'assets/img/futaba sakura.jpeg',
   securityTag: 'WASPADALAH',
   detail: {
     year: '2024',

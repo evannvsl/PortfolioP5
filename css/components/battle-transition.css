@@ -1,0 +1,499 @@
+/* ============================================================
+   css/components/battle-transition.css
+   Persona 5 Royal — Battle Start Transition
+   
+   Sequence (total ~1350ms):
+     0ms   : overlay visible, screen shake
+     80ms  : slash sweeps diagonally
+     200ms : black panels crash in from left + right
+     420ms : red eye / spotlight flash
+     540ms : "TAKE YOUR HEART" text slams in
+     750ms : halftone dots burst
+     950ms : white flash wipe
+     1200ms: navigate
+   ============================================================ */
+
+/* ── Container ────────────────────────────────────────────── */
+#battle-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+#battle-transition.bt-active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* ── 1. SLASH LAYER (diagonal red sweep) ─────────────────── */
+.bt-slash {
+  position: absolute;
+  inset: 0;
+  /* two overlapping diagonal bands */
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%, transparent 30%,
+      var(--red) 30%, var(--red) 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 40%, transparent 55%,
+      rgba(225,6,0,0.5) 55%, rgba(225,6,0,0.5) 65%,
+      transparent 65%
+    );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.bt-active .bt-slash {
+  animation: btSlashSweep 0.32s cubic-bezier(0.16, 0.8, 0.3, 1) forwards;
+}
+@keyframes btSlashSweep {
+  0%   { transform: translateX(-120%); opacity: 1; }
+  60%  { transform: translateX(0%);    opacity: 1; }
+  100% { transform: translateX(120%);  opacity: 0; }
+}
+
+/* ── 2. LEFT PANEL ────────────────────────────────────────── */
+.bt-panel-left {
+  position: absolute;
+  top: 0; left: 0;
+  width: 60%;
+  height: 100%;
+  background: #000;
+  transform: translateX(-100%);
+  /* skew untuk look P5 */
+  clip-path: polygon(0 0, 105% 0, 92% 100%, 0 100%);
+}
+
+.bt-active .bt-panel-left {
+  animation: btPanelLeft 0.28s 0.18s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes btPanelLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0%); }
+}
+
+/* ── 3. RIGHT PANEL ───────────────────────────────────────── */
+.bt-panel-right {
+  position: absolute;
+  top: 0; right: 0;
+  width: 60%;
+  height: 100%;
+  background: #000;
+  transform: translateX(100%);
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, -5% 100%);
+}
+
+.bt-active .bt-panel-right {
+  animation: btPanelRight 0.28s 0.18s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes btPanelRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0%); }
+}
+
+/* ── 4. RED DIAGONAL STRIPE CENTER (garis silang ala P5) ─── */
+.bt-center-stripe {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      var(--red) 0px, var(--red) 3px,
+      transparent 3px, transparent 18px
+    );
+  mix-blend-mode: overlay;
+}
+
+.bt-active .bt-center-stripe {
+  animation: btStripeFlash 0.5s 0.3s steps(3) both;
+}
+@keyframes btStripeFlash {
+  0%   { opacity: 0; }
+  30%  { opacity: 0.6; }
+  60%  { opacity: 0.2; }
+  100% { opacity: 0.35; }
+}
+
+/* ── 5. RED EYE / SPOTLIGHT ───────────────────────────────── */
+.bt-eye {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 40% 20% at 50% 48%,
+    rgba(225, 6, 0, 0.95) 0%,
+    rgba(225, 6, 0, 0.4) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.bt-active .bt-eye {
+  animation: btEyePulse 0.4s 0.35s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes btEyePulse {
+  0%   { opacity: 0;   transform: scale(0.3); }
+  50%  { opacity: 1;   transform: scale(1.1); }
+  100% { opacity: 0.7; transform: scale(1);   }
+}
+
+/* ── 6. MAIN TEXT — "TAKE YOUR HEART" ────────────────────── */
+.bt-text-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bt-text-main {
+  font-family: var(--f-special);
+  font-size: clamp(36px, 7vw, 80px);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  line-height: 1;
+  /* italic slash ala P5 */
+  transform: skewX(-8deg);
+  opacity: 0;
+  /* red shadow + glow */
+  /* text-shadow:
+    4px 4px 0px var(--red),
+    8px 8px 0px rgba(225,6,0,0.3),
+    0 0 40px rgba(225,6,0,0.8); */
+}
+
+.bt-active .bt-text-main {
+  animation: btTextSlam 0.2s 0.52s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes btTextSlam {
+  0%   { opacity: 0; transform: skewX(-8deg) scale(2.5) translateY(-20px); }
+  60%  { opacity: 1; transform: skewX(-8deg) scale(0.95) translateY(4px); }
+  100% { opacity: 1; transform: skewX(-8deg) scale(1) translateY(0); }
+}
+
+.bt-text-sub {
+  font-family: var(--f-menu);
+  font-size: clamp(10px, 1.4vw, 16px);
+  color: var(--red);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.bt-active .bt-text-sub {
+  animation: btSubFade 0.25s 0.65s ease both;
+}
+@keyframes btSubFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 0.9; transform: translateY(0); }
+}
+
+/* ── 7. HALFTONE BURST ────────────────────────────────────── */
+.bt-halftone {
+  position: absolute;
+  inset: -20%;
+  background-image: radial-gradient(circle, var(--red) 1.5px, transparent 2px);
+  background-size: 14px 14px;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: scale(0.7);
+}
+
+.bt-active .bt-halftone {
+  animation: btHalftone 0.45s 0.55s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes btHalftone {
+  0%   { opacity: 0;   transform: scale(0.7) rotate(-5deg); }
+  40%  { opacity: 0.5; transform: scale(1.05) rotate(0deg); }
+  100% { opacity: 0.2; transform: scale(1) rotate(0deg); }
+}
+
+/* ── 8. CHROMATIC ABERRATION LINES ───────────────────────── */
+.bt-chromatic {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.bt-active .bt-chromatic {
+  animation: btChromatic 0.08s 0.2s steps(2) 4 both;
+}
+@keyframes btChromatic {
+  0%   { opacity: 0; box-shadow: inset 6px 0 0 rgba(255,0,0,0.6), inset -6px 0 0 rgba(0,255,255,0.6); }
+  50%  { opacity: 1; box-shadow: inset -6px 0 0 rgba(255,0,0,0.6), inset 6px 0 0 rgba(0,255,255,0.6); }
+  100% { opacity: 0; box-shadow: none; }
+}
+
+/* ── 9. FINAL WHITE FLASH WIPE ────────────────────────────── */
+.bt-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.bt-active .bt-flash {
+  animation: btFlashWipe 0.22s 0.92s cubic-bezier(0.86, 0, 0.07, 1) both;
+}
+@keyframes btFlashWipe {
+  0%   { transform: scaleX(0); opacity: 0.95; }
+  50%  { transform: scaleX(1); opacity: 0.95; }
+  100% { transform: scaleX(1); opacity: 0;    }
+}
+
+/* ── SCREEN SHAKE ─────────────────────────────────────────── */
+@keyframes btBodyShake {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  15%  { transform: translate(-4px, 2px) rotate(-0.5deg); }
+  30%  { transform: translate(5px, -3px) rotate(0.5deg); }
+  45%  { transform: translate(-3px, 4px) rotate(-0.3deg); }
+  60%  { transform: translate(4px, -2px) rotate(0.4deg); }
+  75%  { transform: translate(-2px, 3px) rotate(-0.2deg); }
+  90%  { transform: translate(2px, -1px) rotate(0.1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+body.bt-shaking {
+  animation: btBodyShake 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* ── REDUCED MOTION override ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bt-active .bt-slash,
+  .bt-active .bt-panel-left,
+  .bt-active .bt-panel-right,
+  .bt-active .bt-center-stripe,
+  .bt-active .bt-eye,
+  .bt-active .bt-text-main,
+  .bt-active .bt-text-sub,
+  .bt-active .bt-halftone,
+  .bt-active .bt-chromatic,
+  .bt-active .bt-flash {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* ============================================================
+   CLOSING TRANSITION — "Battle End / Escape" (project.html)
+   
+   Sequence (total ~950ms):
+     0ms   : konten fade+slide down (retreat)
+     80ms  : slash sweep dari kanan ke kiri (kebalikan open)
+     200ms : panel merah masuk dari kiri, hitam dari kanan
+     450ms : teks "MISSION COMPLETE" / "RETURNING..." slam
+     700ms : stripe flash
+     850ms : navigate ke index.html#portfolio
+   ============================================================ */
+
+/* ── Container (reuse #battle-transition jika ada,
+      tapi di project.html inject sendiri via JS) ────────── */
+#close-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+#close-transition.ct-active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* ── 1. SLASH DARI KANAN ──────────────────────────────────── */
+.ct-slash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      -115deg,
+      transparent 0%, transparent 30%,
+      var(--red) 30%, var(--red) 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      -115deg,
+      transparent 40%, transparent 55%,
+      rgba(225,6,0,0.5) 55%, rgba(225,6,0,0.5) 65%,
+      transparent 65%
+    );
+  transform: translateX(120%);
+  opacity: 0;
+}
+
+.ct-active .ct-slash {
+  animation: ctSlashSweep 0.28s cubic-bezier(0.16, 0.8, 0.3, 1) forwards;
+}
+@keyframes ctSlashSweep {
+  0%   { transform: translateX(120%);  opacity: 1; }
+  60%  { transform: translateX(0%);    opacity: 1; }
+  100% { transform: translateX(-120%); opacity: 0; }
+}
+
+/* ── 2. PANEL MERAH DARI KIRI ─────────────────────────────── */
+.ct-panel-left {
+  position: absolute;
+  top: 0; left: 0;
+  width: 60%;
+  height: 100%;
+  background: var(--red);
+  transform: translateX(-100%);
+  clip-path: polygon(0 0, 105% 0, 92% 100%, 0 100%);
+}
+
+.ct-active .ct-panel-left {
+  animation: ctPanelLeft 0.3s 0.14s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes ctPanelLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0%); }
+}
+
+/* ── 3. PANEL HITAM DARI KANAN ────────────────────────────── */
+.ct-panel-right {
+  position: absolute;
+  top: 0; right: 0;
+  width: 60%;
+  height: 100%;
+  background: #000;
+  transform: translateX(100%);
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, -5% 100%);
+}
+
+.ct-active .ct-panel-right {
+  animation: ctPanelRight 0.3s 0.14s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes ctPanelRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0%); }
+}
+
+/* ── 4. STRIPE OVERLAY ────────────────────────────────────── */
+.ct-stripe {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 3px,
+      transparent 3px, transparent 18px
+    );
+}
+
+.ct-active .ct-stripe {
+  animation: ctStripe 0.45s 0.28s steps(3) both;
+}
+@keyframes ctStripe {
+  0%   { opacity: 0; }
+  40%  { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+/* ── 5. TEXT WRAP ─────────────────────────────────────────── */
+.ct-text-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ct-text-main {
+  font-family: var(--f-display);
+  font-size: clamp(28px, 5.5vw, 64px);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+  line-height: 1;
+  transform: skewX(-8deg);
+  opacity: 0;
+  text-shadow:
+    3px 3px 0px rgba(0,0,0,0.8),
+    0 0 30px rgba(255,255,255,0.4);
+}
+
+.ct-active .ct-text-main {
+  animation: ctTextSlam 0.22s 0.42s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+@keyframes ctTextSlam {
+  0%   { opacity: 0; transform: skewX(-8deg) scale(2) translateY(16px); }
+  60%  { opacity: 1; transform: skewX(-8deg) scale(0.96) translateY(-3px); }
+  100% { opacity: 1; transform: skewX(-8deg) scale(1) translateY(0); }
+}
+
+.ct-text-sub {
+  font-family: var(--f-menu);
+  font-size: clamp(9px, 1.2vw, 14px);
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.ct-active .ct-text-sub {
+  animation: ctSubFade 0.2s 0.58s ease both;
+}
+@keyframes ctSubFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 0.8; transform: translateY(0); }
+}
+
+/* ── 6. CHROMATIC ─────────────────────────────────────────── */
+.ct-chromatic {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.ct-active .ct-chromatic {
+  animation: ctChromatic 0.08s 0.12s steps(2) 3 both;
+}
+@keyframes ctChromatic {
+  0%   { opacity: 0; box-shadow: inset -5px 0 0 rgba(255,0,0,0.5), inset 5px 0 0 rgba(0,255,255,0.5); }
+  50%  { opacity: 1; box-shadow: inset 5px 0 0 rgba(255,0,0,0.5), inset -5px 0 0 rgba(0,255,255,0.5); }
+  100% { opacity: 0; box-shadow: none; }
+}
+
+/* ── SCREEN SHAKE saat closing ────────────────────────────── */
+body.ct-shaking {
+  animation: btBodyShake 0.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* ── REDUCED MOTION ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .ct-active .ct-slash,
+  .ct-active .ct-panel-left,
+  .ct-active .ct-panel-right,
+  .ct-active .ct-stripe,
+  .ct-active .ct-text-main,
+  .ct-active .ct-text-sub,
+  .ct-active .ct-chromatic {
+    animation-duration: 0.01ms !important;
+  }
+}

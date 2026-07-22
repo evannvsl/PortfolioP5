@@ -1,10 +1,14 @@
 // ============================================================
 // js/modules/portfolio.js
+// Klik card → battle transition → redirect ke project.html?id=X
 // ============================================================
-import { openProject } from './projectdetail.js';
+import { playBattleTransition } from './battle-transition.js';
+
+function goToProject(id) {
+  playBattleTransition(`project.html?id=${id}`);
+}
 
 export function renderPortfolio() {
-  // Cards are hardcoded in HTML — just wire up click handlers
   const cards = document.querySelectorAll('.work-card[data-project-id]');
   cards.forEach(card => {
     const id = parseInt(card.dataset.projectId, 10);
@@ -12,10 +16,10 @@ export function renderPortfolio() {
 
     card.style.cursor = 'pointer';
 
-    // Click anywhere on card opens detail, EXCEPT if user clicks a real <a>
+    // Click di mana saja pada card → battle transition (kecuali klik link nyata)
     card.addEventListener('click', (e) => {
       if (e.target.closest('a[href]:not([href="#"])')) return;
-      openProject(id);
+      goToProject(id);
     });
 
     // Keyboard accessibility
@@ -25,7 +29,7 @@ export function renderPortfolio() {
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openProject(id);
+        goToProject(id);
       }
     });
   });
