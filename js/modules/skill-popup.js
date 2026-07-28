@@ -1,8 +1,9 @@
 // ============================================================
 // js/modules/skill-popup.js
 // Persona 5 style half-page popup untuk skill cards
-// Klik skill card → panel slide dari kanan
+// Klik skill card → panel slide dari kanan dengan detail menyeluruh
 // ============================================================
+import { skillDetails } from '../data/skills-detail.js';
 
 let overlay = null;
 let panel   = null;
@@ -14,25 +15,24 @@ export function initSkillPopup() {
   overlay = document.getElementById('skill-overlay');
   if (!overlay) return;
 
-  // Render struktur statis sekali
+  // Render struktur statis overlay
   overlay.innerHTML = `
     <div class="sk-backdrop" aria-hidden="true"></div>
-    <div class="sk-panel" role="dialog" aria-modal="true" aria-label="Skill Detail">
+    <div class="sk-panel" role="dialog" aria-modal="true" aria-label="Skill Detail Inspector">
 
       <!-- Top bar -->
       <div class="sk-topbar">
         <div class="sk-topbar-left">
           <span class="sk-num">01</span>
           <span class="sk-slash-dec" aria-hidden="true"></span>
-          <span class="sk-category">SKILLSET</span>
+          <span class="sk-category">SKILLSET INSPECTOR</span>
         </div>
         <button class="sk-close" aria-label="Close skill detail">
           <span>✕</span>
-          <span>ESC</span>
         </button>
       </div>
 
-      <!-- Hero image -->
+      <!-- Hero image banner -->
       <div class="sk-hero">
         <img src="" alt="" class="sk-hero-img" />
         <div class="sk-hero-overlay"></div>
@@ -46,24 +46,21 @@ export function initSkillPopup() {
       <!-- Bottom bar -->
       <div class="sk-bottombar">
         <span class="sk-bottombar-num">◆ 01 / 08</span>
-        <span>CONFIDENTIAL</span>
+        <span>CONFIDENTIAL SYSTEM PROFILE</span>
       </div>
     </div>
   `;
 
   panel = overlay.querySelector('.sk-panel');
 
-  // Event listeners sekali saja
+  // Event listeners
   overlay.querySelector('.sk-backdrop').addEventListener('click', closeSkillPopup);
   overlay.querySelector('.sk-close').addEventListener('click', closeSkillPopup);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && isOpen) closeSkillPopup();
   });
 
-  // Pasang click handler pada semua skill cards
   wireSkillCards();
-
-  // Hitung total cards
   totalCards = document.querySelectorAll('.skill-card[data-skill-id]').length;
 }
 
@@ -90,26 +87,36 @@ function wireSkillCards() {
 export function openSkillPopup(card) {
   if (!overlay || !panel) return;
 
-  // Ambil semua data dari DOM card
-  const num      = card.querySelector('.sc-bignum')?.textContent?.trim() ?? '01';
-  const tag      = card.querySelector('.sc-tag')?.textContent?.trim()    ?? '';
+  const skillId  = parseInt(card.dataset.skillId, 10) || 1;
+  const num      = card.querySelector('.sc-bignum')?.textContent?.trim() ?? String(skillId).padStart(2, '0');
+  const tag      = card.querySelector('.sc-tag')?.textContent?.trim() ?? '';
   const title    = card.querySelector('.skill-card-title')?.textContent?.trim() ?? 'SKILL';
   const imgSrc   = card.querySelector('.sc-img')?.src ?? '';
   const imgAlt   = card.querySelector('.sc-img')?.alt ?? '';
-  const total    = String(totalCards).padStart(2, '0');
+  const total    = String(totalCards || 8).padStart(2, '0');
 
-  // Kumpulkan semua badge dengan level-nya
+  // Badges dari DOM card
   const badges = [...card.querySelectorAll('.badge')].map(b => ({
     text: b.textContent.trim(),
     lvl:  b.dataset.lvl ?? '3',
   }));
+
+  // Detail tambahan dari dictionary
+  const info = skillDetails[skillId] || {
+    title: title,
+    tag: tag,
+    mastery: 85,
+    levelText: 'PROFICIENT',
+    desc: 'Pengembangan dan penerapan keahlian teknis secara profesional.',
+    competencies: ['Penerapan keahlian teknis', 'Analisis dan pemecahan masalah']
+  };
 
   // Reset closing state
   panel.classList.remove('is-closing');
 
   // Update statis
   overlay.querySelector('.sk-num').textContent          = num;
-  overlay.querySelector('.sk-category').textContent     = tag || 'SKILLSET';
+  overlay.querySelector('.sk-category').textContent     = info.tag || tag || 'SKILLSET';
   overlay.querySelector('.sk-hero-bignum').textContent  = num;
   overlay.querySelector('.sk-bottombar-num').textContent = `◆ ${num} / ${total}`;
 
@@ -117,8 +124,14 @@ export function openSkillPopup(card) {
   heroImg.src = imgSrc;
   heroImg.alt = imgAlt;
 
-  // Render body
-  overlay.querySelector('.sk-body-content').innerHTML = buildBodyHTML({ title, tag, badges, num });
+  // Render body HTML
+  overlay.querySelector('.sk-body-content').innerHTML = buildBodyHTML({ title: info.title || title, info, badges, num });
+
+  // Animasi bar penguasaan setelah render
+  setTimeout(() => {
+    const barFill = overlay.querySelector('.sk-mastery-fill');
+    if (barFill) barFill.style.width = `${info.mastery}%`;
+  }, 100);
 
   // Buka
   overlay.classList.add('is-open');
@@ -138,7 +151,7 @@ export function closeSkillPopup() {
 
   panel.classList.add('is-closing');
   panel.addEventListener('transitionend', onCloseEnd, { once: true });
-  setTimeout(onCloseEnd, 450); // fallback
+  setTimeout(onCloseEnd, 400);
 }
 
 function onCloseEnd() {
@@ -147,11 +160,11 @@ function onCloseEnd() {
   overlay.setAttribute('aria-hidden', 'true');
 }
 
-// ── Build body HTML ───────────────────────────────────────────
-function buildBodyHTML({ title, tag, badges }) {
+// ── Build Body HTML ───────────────────────────────────────────
+function buildBodyHTML({ title, info, badges }) {
 
-  // Kelompokkan badge per level
-  const byLevel = { 5: [], 4: [], 3: [], 2: [] };
+  // Grouping badges by level
+  const byLevel = { 5: [], 4: [], 3: [], 2: [], 1: [] };
   badges.forEach(b => {
     const lvl = parseInt(b.lvl, 10);
     if (byLevel[lvl]) byLevel[lvl].push(b.text);
@@ -159,43 +172,79 @@ function buildBodyHTML({ title, tag, badges }) {
   });
 
   const levelLabels = {
-    5: '★★★★★  MASTER',
-    4: '★★★★☆  ADVANCED',
-    3: '★★★☆☆  INTERMEDIATE',
-    2: '★★☆☆☆  LEARNING',
+    5: '★★★★★ PROFESSIONAL / MASTER',
+    4: '★★★★☆ ADVANCED EXPERT',
+    3: '★★★☆☆ INTERMEDIATE',
+    2: '★★☆☆☆ GOOD KNOWLEDGE',
+    1: '★☆☆☆☆ BASIC FOUNDATION',
   };
 
-  // Hanya tampilkan level yang punya isi
-  const sectionsHTML = [5, 4, 3, 2]
+  const sectionsHTML = [5, 4, 3, 2, 1]
     .filter(lvl => byLevel[lvl].length > 0)
     .map(lvl => `
       <div class="sk-level-group">
-        <h3 class="sk-section-label">${levelLabels[lvl]}</h3>
+        <h4 class="sk-section-label">${levelLabels[lvl]}</h4>
         <div class="sk-badges">
           ${byLevel[lvl].map(t =>
-            `<span class="badge" data-lvl="${lvl}">${t}</span>`
+            `<span class="badge" data-lvl="${lvl}">✦ ${t}</span>`
           ).join('')}
         </div>
       </div>
     `).join('');
 
+  const compsHTML = (info.competencies || []).map(c => `
+    <li class="sk-comp-item">
+      <span class="sk-comp-bullet">◆</span>
+      <span>${c}</span>
+    </li>
+  `).join('');
+
   return `
     <div class="sk-body">
-      <!-- Title -->
+      <!-- Title Block -->
       <div class="sk-title-block">
+        <span class="sk-tag-inline">◆ ${info.tag}</span>
         <h2 class="sk-title">${title}</h2>
-        <span class="sk-tag-inline">◆ ${tag}</span>
       </div>
 
-      <!-- Badges per level -->
-      ${sectionsHTML}
+      <!-- Mastery Level Bar -->
+      <div class="sk-mastery-box">
+        <div class="sk-mastery-header">
+          <span class="sk-mastery-label">MASTERY LEVEL</span>
+          <span class="sk-mastery-val">${info.mastery}% — ${info.levelText}</span>
+        </div>
+        <div class="sk-mastery-track">
+          <div class="sk-mastery-fill" style="width: 0%;"></div>
+        </div>
+      </div>
 
-      <!-- Legend -->
+      <!-- Description Section -->
+      <div class="sk-section">
+        <h4 class="sk-section-label">DESKRIPSI SKILLSET</h4>
+        <p class="sk-desc-text">${info.desc}</p>
+      </div>
+
+      <!-- Key Competencies Section -->
+      <div class="sk-section">
+        <h4 class="sk-section-label">CORE COMPETENCY & CAPABILITIES</h4>
+        <ul class="sk-comp-list">
+          ${compsHTML}
+        </ul>
+      </div>
+
+      <!-- Technologies & Tools Breakdown -->
+      <div class="sk-section">
+        <h4 class="sk-section-label">TEKNOLOGI & PERKAKAS TERKAIT</h4>
+        ${sectionsHTML}
+      </div>
+
+      <!-- Level Legend -->
       <div class="sk-legend">
-        <span class="sk-legend-item" data-lvl="5">★★★★★ MASTER</span>
-        <span class="sk-legend-item" data-lvl="4">★★★★☆ ADVANCED</span>
-        <span class="sk-legend-item" data-lvl="3">★★★☆☆ INTERMEDIATE</span>
-        <span class="sk-legend-item" data-lvl="2">★★☆☆☆ LEARNING</span>
+        <span class="sk-legend-title">LEVEL:</span>
+        <span class="sk-legend-item" data-lvl="5">LVL 5: MASTER</span>
+        <span class="sk-legend-item" data-lvl="4">LVL 4: ADVANCED</span>
+        <span class="sk-legend-item" data-lvl="3">LVL 3: INTERMEDIATE</span>
+        <span class="sk-legend-item" data-lvl="2">LVL 2: GOOD</span>
       </div>
     </div>
   `;

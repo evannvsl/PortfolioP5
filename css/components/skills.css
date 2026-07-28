@@ -148,7 +148,7 @@
 }
 
 /* Slash diagonal overlay — Persona 5 style */
-.sc-slash {
+/* .sc-slash {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -166,15 +166,15 @@
   transition: opacity 0.4s ease;
   z-index: 2;
   pointer-events: none;
-}
+} */
 
-.skill-card:hover .sc-slash { opacity: 1; }
+/* .skill-card:hover .sc-slash { opacity: 1; } */
 
 /* Halftone dots */
 .sc-halftone {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, var(--red) 1px, transparent 1.5px);
+  background-image: radial-gradient(circle, var(--red-dark) 1px, transparent 1.5px);
   background-size: 8px 8px;
   opacity: 0;
   transform: scale(1.4);
@@ -262,7 +262,7 @@
 .skill-card-icon {
   font-size: 9px;
   color: var(--red);
-  line-height: 1;
+  line-height: 3;
   transition: transform 0.3s;
 }
 
@@ -289,7 +289,7 @@
   font-family: var(--f-body);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.04em; 
   padding: 2px 7px;
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255,255,255,0.02);
@@ -318,6 +318,10 @@
 .badge[data-lvl="2"] {
   border-color: rgba(255,255,255,0.05);
   color: rgba(255,255,255,0.35);
+}
+.badge[data-lvl="1"] {
+  border-color: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.3);
 }
 
 .badge:hover {

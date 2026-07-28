@@ -1,108 +1,278 @@
 // ============================================================
 // js/project.js
-// Script untuk halaman project.html
-// Baca query param ?id= lalu render konten project
-// + Animasi page reveal P5 style setelah battle transition
+// Script untuk Halaman Project History & Portfolio Showcase
+// Mengelola data project (Code, Hardware, Creative, Achievements),
+// tab filter, pencarian real-time, inspector modal & battle transition
 // ============================================================
 import { projects } from './data/projects.js';
 
-// ── Page reveal: wipe merah → konten masuk ──────────────────
-function initPageReveal() {
-  // Inject reveal overlay ke body
-  const rev = document.createElement('div');
-  rev.id = 'page-reveal';
-  rev.innerHTML = `
-    <div class="pr-wipe-left"></div>
-    <div class="pr-wipe-right"></div>
-    <div class="pr-flash"></div>
-  `;
-  document.body.prepend(rev);
+// ── Render Projects List ─────────────────────────────────────
+function renderProjects(projectsToRender) {
+  const container = document.getElementById('ph-projects-list');
+  if (!container) return;
 
-  // Inject CSS inline (agar tidak perlu file terpisah)
-  const style = document.createElement('style');
-  style.textContent = `
-    #page-reveal {
-      position: fixed; inset: 0; z-index: 88888;
-      pointer-events: none; overflow: hidden;
-    }
-    /* Wipe kiri: panel merah slide keluar ke kiri */
-    .pr-wipe-left {
-      position: absolute; top: 0; left: 0;
-      width: 55%; height: 100%;
-      background: #e10600;
-      clip-path: polygon(0 0, 105% 0, 90% 100%, 0 100%);
-      transform: translateX(0%);
-      animation: prWipeLeft 0.4s 0.05s cubic-bezier(0.86, 0, 0.07, 1) forwards;
-    }
-    /* Wipe kanan: panel hitam slide keluar ke kanan */
-    .pr-wipe-right {
-      position: absolute; top: 0; right: 0;
-      width: 55%; height: 100%;
-      background: #000;
-      clip-path: polygon(10% 0, 100% 0, 100% 100%, -5% 100%);
-      transform: translateX(0%);
-      animation: prWipeRight 0.4s 0.05s cubic-bezier(0.86, 0, 0.07, 1) forwards;
-    }
-    /* Flash putih tipis di tengah sebelum reveal */
-    .pr-flash {
-      position: absolute; inset: 0;
-      background: #fff;
-      opacity: 0.7;
-      animation: prFlash 0.25s 0s ease-out forwards;
-    }
-    @keyframes prWipeLeft {
-      from { transform: translateX(0%); }
-      to   { transform: translateX(-110%); }
-    }
-    @keyframes prWipeRight {
-      from { transform: translateX(0%); }
-      to   { transform: translateX(110%); }
-    }
-    @keyframes prFlash {
-      0%   { opacity: 0.7; }
-      100% { opacity: 0; }
-    }
-    /* Konten utama: fade+slide up saat wipe selesai */
-    .proj-page.pr-content-in {
-      animation: prContentIn 0.45s 0.3s cubic-bezier(0.16, 0.8, 0.3, 1) both;
-    }
-    @keyframes prContentIn {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .proj-topbar.pr-bar-in {
-      animation: prBarIn 0.35s 0.15s cubic-bezier(0.16, 0.8, 0.3, 1) both;
-    }
-    @keyframes prBarIn {
-      from { opacity: 0; transform: translateY(-100%); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .proj-hero.pr-hero-in {
-      animation: prHeroIn 0.5s 0.2s cubic-bezier(0.16, 0.8, 0.3, 1) both;
-    }
-    @keyframes prHeroIn {
-      from { opacity: 0; transform: scale(1.06); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .pr-wipe-left, .pr-wipe-right, .pr-flash,
-      .proj-page.pr-content-in, .proj-topbar.pr-bar-in, .proj-hero.pr-hero-in {
-        animation-duration: 0.01ms !important;
-      }
-    }
-  `;
-  document.head.appendChild(style);
+  if (!projectsToRender || projectsToRender.length === 0) {
+    container.innerHTML = `
+      <div class="ph-no-results" style="text-align:center; padding: 60px 20px;">
+        <h3 style="font-family: var(--f-display); font-size: 24px; color: var(--red);">PROJECT TIDAK DITEMUKAN</h3>
+        <p style="font-family: var(--f-code); color: rgba(255,255,255,0.5); margin-top: 8px;">// Silakan coba kata kunci pencarian atau kategori lain</p>
+      </div>
+    `;
+    return;
+  }
 
-  // Tambahkan class animasi pada elemen konten
-  document.querySelector('.proj-topbar')?.classList.add('pr-bar-in');
-  document.querySelector('.proj-hero')?.classList.add('pr-hero-in');
-  document.querySelector('.proj-page')?.classList.add('pr-content-in');
+  container.innerHTML = projectsToRender.map(project => {
+    const d = project.detail || {};
+    const items = d.items || [];
 
-  // Hapus overlay setelah animasi selesai (cleanup)
-  setTimeout(() => { rev.remove(); }, 900);
+    const highlightsHtml = (d.highlights || []).map(h => `
+      <li><em>◆</em> <span>${h}</span></li>
+    `).join('');
+
+    const stackTagsHtml = (d.stack || []).map(s => `
+      <span class="ph-stack-tag">${s}</span>
+    `).join('');
+
+    const subCardsHtml = items.map((item, idx) => `
+      <article class="ph-subcard" data-cat="${project.category}" data-item-index="${idx}">
+        <div class="ph-subcard-top">
+          <span class="ph-subcard-role">${item.role || 'Case Study'}</span>
+          <span class="ph-subcard-year">${item.year || d.year}</span>
+        </div>
+        <h4 class="ph-subcard-title">${item.title}</h4>
+        <p class="ph-subcard-summary">${item.summary || item.details}</p>
+        <div class="ph-subcard-stack">
+          ${(item.stack || []).map(st => `<span class="ph-subcard-chip">${st}</span>`).join('')}
+        </div>
+        <div class="ph-subcard-action">
+          <span>INSPECT CASE STUDY</span>
+          <i>➜</i>
+        </div>
+      </article>
+    `).join('');
+
+    return `
+      <section class="ph-category-block" id="cat-${project.category}" data-cat="${project.category}">
+        
+        <!-- Category Header -->
+        <header class="ph-cat-header">
+          <div class="ph-cat-header-left">
+            <span class="ph-cat-num-tag">CATEGORY ${project.num} /</span>
+            <h2 class="ph-cat-title">${project.title}</h2>
+            <p class="ph-cat-subtitle">${project.subtitle || project.desc}</p>
+          </div>
+          <span class="ph-cat-security-tag">${project.securityTag || 'SECURE LOG'}</span>
+        </header>
+
+        <!-- Category Overview & High-level details -->
+        <div class="ph-cat-overview-box">
+          <div class="ph-cat-overview-text">
+            <h4>◆ SINKRONISASI KATEGORI</h4>
+            <p>${d.overview || project.desc}</p>
+            <div class="ph-highlights-title">TECHNICAL HIGHLIGHTS</div>
+            <ul class="ph-highlights-list">
+              ${highlightsHtml}
+            </ul>
+          </div>
+          <div class="ph-cat-meta-side">
+            <div class="ph-meta-box">
+              <span class="ph-meta-lbl">ROLE & EXPERTISE</span>
+              <span class="ph-meta-val">${d.role || 'Developer'}</span>
+            </div>
+            <div class="ph-meta-box">
+              <span class="ph-meta-lbl">TIMELINE</span>
+              <span class="ph-meta-val">${d.year || '2024'}</span>
+            </div>
+            <div class="ph-meta-box">
+              <span class="ph-meta-lbl">CORE STACK</span>
+              <div class="ph-stack-tags">
+                ${stackTagsHtml}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-Projects Case Studies Grid -->
+        <div class="ph-subprojects-grid">
+          ${subCardsHtml}
+        </div>
+
+      </section>
+    `;
+  }).join('');
+
+  // Re-attach modal listeners to subcards
+  attachSubcardListeners();
 }
 
-// ── Custom cursor ───────────────────────────────────────────
+// ── Modal Inspector Logic ────────────────────────────────────
+function openModal(catName, itemIndex) {
+  const project = projects.find(p => p.category === catName || p.id === parseInt(catName, 10));
+  if (!project || !project.detail || !project.detail.items) return;
+
+  const item = project.detail.items[itemIndex];
+  if (!item) return;
+
+  const modal = document.getElementById('ph-modal');
+  if (!modal) return;
+
+  document.getElementById('modal-cat-tag').textContent = `${project.num} / ${project.title}`;
+  document.getElementById('modal-title').textContent = item.title;
+  document.getElementById('modal-role').textContent = item.role || project.detail.role;
+  document.getElementById('modal-year').textContent = item.year || project.detail.year;
+  document.getElementById('modal-summary').textContent = item.summary || item.details;
+  document.getElementById('modal-details').textContent = item.details || item.summary;
+
+  const stackContainer = document.getElementById('modal-stack');
+  stackContainer.innerHTML = (item.stack || project.detail.stack || []).map(st => `
+    <span class="ph-subcard-chip" style="background: rgba(225,6,0,0.1); border-color: rgba(225,6,0,0.3); color: #fff;">${st}</span>
+  `).join('');
+
+  const linkBtn = document.getElementById('modal-link-btn');
+  if (item.link && item.link !== '#') {
+    linkBtn.href = item.link;
+    linkBtn.style.display = 'inline-flex';
+  } else if (project.detail.links && project.detail.links.github) {
+    linkBtn.href = project.detail.links.github;
+    linkBtn.style.display = 'inline-flex';
+  } else {
+    linkBtn.style.display = 'none';
+  }
+
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('ph-modal');
+  if (!modal) return;
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function attachSubcardListeners() {
+  const cards = document.querySelectorAll('.ph-subcard');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const cat = card.dataset.cat;
+      const idx = parseInt(card.dataset.itemIndex, 10);
+      openModal(cat, idx);
+    });
+  });
+}
+
+// ── Search & Filter Logic ────────────────────────────────────
+function initSearchAndFilter() {
+  const searchInput = document.getElementById('ph-search-input');
+  const clearBtn = document.getElementById('ph-search-clear');
+  const filterTabs = document.querySelectorAll('.filter-tab');
+
+  let activeCat = 'all';
+
+  function applyFilters() {
+    const query = (searchInput.value || '').toLowerCase().trim();
+
+    const filtered = projects.filter(proj => {
+      // 1. Filter Kategori
+      const catMatch = activeCat === 'all' || proj.category === activeCat;
+      if (!catMatch) return false;
+
+      // 2. Filter Search Query
+      if (!query) return true;
+
+      const titleMatch = proj.title.toLowerCase().includes(query);
+      const descMatch = (proj.desc || '').toLowerCase().includes(query);
+      const tagsMatch = (proj.tags || []).some(t => t.toLowerCase().includes(query));
+      const stackMatch = (proj.detail?.stack || []).some(s => s.toLowerCase().includes(query));
+      const itemsMatch = (proj.detail?.items || []).some(item => 
+        item.title.toLowerCase().includes(query) || 
+        (item.summary || '').toLowerCase().includes(query) ||
+        (item.stack || []).some(st => st.toLowerCase().includes(query))
+      );
+
+      return titleMatch || descMatch || tagsMatch || stackMatch || itemsMatch;
+    });
+
+    renderProjects(filtered);
+  }
+
+  // Event tabs
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeCat = tab.dataset.cat;
+
+      // Scroll halus ke section jika memilih kategori khusus
+      if (activeCat !== 'all') {
+        const targetSection = document.getElementById(`cat-${activeCat}`);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      applyFilters();
+    });
+  });
+
+  // Event search
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      if (clearBtn) clearBtn.style.display = searchInput.value ? 'block' : 'none';
+      applyFilters();
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      applyFilters();
+    });
+  }
+}
+
+// ── Back Navigation & Battle Transition ───────────────────────
+function playCloseTransition(targetUrl) {
+  const overlay = document.getElementById('close-transition');
+  document.body.classList.add('ct-shaking');
+
+  if (overlay) overlay.classList.add('ct-active');
+
+  setTimeout(() => {
+    window.location.href = targetUrl;
+  }, 850);
+}
+
+function initBackButton() {
+  let fired = false;
+  function goBack() {
+    if (fired) return;
+    const modal = document.getElementById('ph-modal');
+    if (modal && modal.classList.contains('active')) {
+      closeModal();
+      return;
+    }
+    fired = true;
+    playCloseTransition('index.html#portfolio');
+  }
+
+  const btn = document.getElementById('proj-back');
+  if (btn) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      goBack();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') goBack();
+  });
+}
+
+// ── Custom Cursor ─────────────────────────────────────────────
 function initCursor() {
   const dot  = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
@@ -122,180 +292,41 @@ function initCursor() {
   }
   loop();
 
-  document.querySelectorAll('a, button, [role="button"]').forEach(el => {
-    el.addEventListener('mouseenter', () => { dot.classList.add('hover'); ring.classList.add('hover'); });
-    el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); ring.classList.remove('hover'); });
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest('a, button, .ph-subcard, .filter-tab')) {
+      dot.classList.add('hover'); ring.classList.add('hover');
+    } else {
+      dot.classList.remove('hover'); ring.classList.remove('hover');
+    }
   });
 }
 
-// ── Scan lines init ─────────────────────────────────────────
-function initBg() {
-  // Scan lines sudah ada di HTML, tidak perlu JS
-}
-
-// ── Reveal sections on scroll ───────────────────────────────
-function initReveal() {
-  const sections = document.querySelectorAll('.proj-section');
-  if (!sections.length) return;
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  sections.forEach(s => io.observe(s));
-}
-
-// ── Build page HTML from project data ───────────────────────
-function buildPage(project) {
-  const d = project.detail || {};
-
-  // ── Top bar
-  document.querySelector('.proj-num').textContent      = project.num;
-  document.querySelector('.proj-category').textContent = project.securityTag || 'PROJECT';
-  document.querySelector('.proj-bottombar-num').textContent =
-    `◆ ${project.num} / ${String(projects.length).padStart(2, '0')}`;
-
-  // ── Hero image
-  const heroImg = document.querySelector('.proj-hero-img');
-  if (heroImg) {
-    heroImg.src = project.img || '';
-    heroImg.alt = project.title;
-  }
-  document.querySelector('.proj-hero-num').textContent = project.num;
-
-  // ── Page title (tab)
-  document.title = `${project.title} — evannvsl`;
-
-  // ── Title block
-  document.querySelector('.proj-title').textContent = project.title;
-  document.querySelector('.proj-meta-year').textContent  = d.year || '—';
-  document.querySelector('.proj-meta-role').textContent  = d.role || '—';
-
-  // ── Tags
-  const tagsEl = document.querySelector('.proj-tags');
-  tagsEl.innerHTML = project.tags
-    .map(t => `<span class="proj-tag">${t}</span>`)
-    .join('');
-
-  // ── Overview
-  document.querySelector('.proj-overview').textContent = d.overview || '';
-
-  // ── Stack
-  const stackEl = document.querySelector('.proj-stack');
-  stackEl.innerHTML = (d.stack || [])
-    .map(s => `<span class="proj-stack-tag">${s}</span>`)
-    .join('');
-
-  // ── Highlights
-  const hlEl = document.querySelector('.proj-highlights');
-  hlEl.innerHTML = (d.highlights || [])
-    .map(h => `
-      <li class="proj-highlight-item">
-        <span class="proj-hl-icon">◆</span>
-        <span>${h}</span>
-      </li>`)
-    .join('');
-
-  // ── Links
-  const linksEl = document.querySelector('.proj-links');
-  const btns = [];
-  if (d.links?.github && d.links.github !== '#') {
-    btns.push(`<a href="${d.links.github}" target="_blank" rel="noopener" class="proj-btn proj-btn-ghost">◆ GITHUB</a>`);
-  }
-  if (d.links?.live && d.links.live !== '#') {
-    btns.push(`<a href="${d.links.live}" target="_blank" rel="noopener" class="proj-btn proj-btn-red">★ LIVE DEMO</a>`);
-  }
-  linksEl.innerHTML = btns.join('');
-
-  // Sembunyikan section links jika kosong
-  const linksSection = linksEl.closest('.proj-section');
-  if (linksSection && btns.length === 0) {
-    linksSection.style.display = 'none';
-  }
-}
-
-// ── Show not-found state ────────────────────────────────────
-function showNotFound() {
-  const main = document.querySelector('.proj-page');
-  if (!main) return;
-  main.innerHTML = `
-    <div class="proj-not-found">
-      <h2>PROJECT NOT FOUND</h2>
-      <p>// ID TIDAK DIKENALI DALAM DATABASE</p>
-      <a href="index.html" class="proj-btn proj-btn-red">← KEMBALI</a>
-    </div>
-  `;
-}
-
-// ── Closing transition: "battle end" ────────────────────────
-function playCloseTransition(targetUrl) {
-  const overlay = document.getElementById('close-transition');
-
-  // 1. Screen shake ringan
-  document.body.classList.add('ct-shaking');
-  document.body.addEventListener('animationend', () => {
-    document.body.classList.remove('ct-shaking');
-  }, { once: true });
-
-  // 2. Konten retreat (fade+slide down)
-  const page    = document.querySelector('.proj-page');
-  const topbar  = document.querySelector('.proj-topbar');
-  const hero    = document.querySelector('.proj-hero');
-
-  if (page)   { page.style.transition   = 'opacity .2s ease, transform .2s ease'; page.style.opacity   = '0'; page.style.transform   = 'translateY(20px)'; }
-  if (topbar) { topbar.style.transition = 'opacity .18s ease, transform .18s ease'; topbar.style.opacity = '0'; topbar.style.transform = 'translateY(-16px)'; }
-  if (hero)   { hero.style.transition   = 'opacity .22s ease, transform .22s ease'; hero.style.opacity   = '0'; hero.style.transform   = 'scale(1.04)'; }
-
-  // 3. Jalankan overlay setelah konten mulai retreat
-  setTimeout(() => {
-    if (overlay) overlay.classList.add('ct-active');
-  }, 80);
-
-  // 4. Vibrate mobile
-  if (navigator.vibrate) navigator.vibrate([30, 15, 40]);
-
-  // 5. Navigate — total ~850ms
-  setTimeout(() => {
-    window.location.href = targetUrl;
-  }, 850);
-}
-
-// ── Back button ──────────────────────────────────────────────
-function initBackButton() {
-  const btn = document.getElementById('proj-back');
-  if (!btn) return;
-
-  let fired = false;
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (fired) return;
-    fired = true;
-    playCloseTransition('index.html#portfolio');
-  });
-}
-
-// ── Main ────────────────────────────────────────────────────
+// ── Initialization ────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Baca ?id= dari URL
-  const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get('id'), 10);
-
-  const project = id ? projects.find(p => p.id === id) : null;
-
-  if (!project) {
-    showNotFound();
-  } else {
-    buildPage(project);
-    initPageReveal();   // P5 wipe reveal setelah battle transition
-    initReveal();
-  }
-
-  initCursor();
+  renderProjects(projects);
+  initSearchAndFilter();
   initBackButton();
-  initBg();
+  initCursor();
+
+  // Close modal listeners
+  const closeBtn = document.getElementById('ph-modal-close');
+  const backdrop = document.querySelector('.ph-modal-backdrop');
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  // Read query params ?id=1 or ?cat=code
+  const params = new URLSearchParams(window.location.search);
+  const idParam = params.get('id');
+  const catParam = params.get('cat');
+
+  if (idParam) {
+    const proj = projects.find(p => p.id === parseInt(idParam, 10));
+    if (proj) {
+      const tab = document.querySelector(`.filter-tab[data-cat="${proj.category}"]`);
+      if (tab) tab.click();
+    }
+  } else if (catParam) {
+    const tab = document.querySelector(`.filter-tab[data-cat="${catParam}"]`);
+    if (tab) tab.click();
+  }
 });

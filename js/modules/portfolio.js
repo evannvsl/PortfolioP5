@@ -33,4 +33,12 @@ export function renderPortfolio() {
       }
     });
   });
+
+  const viewAllBtn = document.getElementById('view-all-projects-btn');
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      playBattleTransition('project.html');
+    });
+  }
 }
