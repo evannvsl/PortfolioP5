@@ -236,14 +236,19 @@ function initSearchAndFilter() {
 
 // ── Back Navigation & Battle Transition ───────────────────────
 function playCloseTransition(targetUrl) {
+  sessionStorage.setItem('skipPreloader', 'true');
   const overlay = document.getElementById('close-transition');
   document.body.classList.add('ct-shaking');
 
   if (overlay) overlay.classList.add('ct-active');
 
+  if (navigator.vibrate) {
+    navigator.vibrate([30, 20, 50]);
+  }
+
   setTimeout(() => {
     window.location.href = targetUrl;
-  }, 850);
+  }, 880);
 }
 
 function initBackButton() {
@@ -267,9 +272,39 @@ function initBackButton() {
     });
   }
 
+  const logo = document.querySelector('.proj-logo');
+  if (logo) {
+    logo.addEventListener('click', (e) => {
+      e.preventDefault();
+      goBack();
+    });
+  }
+
+  const bottomEsc = document.querySelector('.proj-bottombar-esc');
+  if (bottomEsc) {
+    bottomEsc.style.cursor = 'pointer';
+    bottomEsc.addEventListener('click', (e) => {
+      e.preventDefault();
+      goBack();
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') goBack();
   });
+}
+
+function initPageReveal() {
+  // Selalu pastikan flag skipPreloader aktif selama user di project.html
+  sessionStorage.setItem('skipPreloader', 'true');
+
+  const reveal = document.getElementById('project-page-reveal');
+  if (reveal) {
+    reveal.classList.add('revealing');
+    setTimeout(() => {
+      reveal.classList.remove('revealing');
+    }, 500);
+  }
 }
 
 // ── Custom Cursor ─────────────────────────────────────────────
@@ -293,7 +328,7 @@ function initCursor() {
   loop();
 
   document.addEventListener('mouseover', e => {
-    if (e.target.closest('a, button, .ph-subcard, .filter-tab')) {
+    if (e.target.closest('a, button, .ph-subcard, .filter-tab, .proj-bottombar-esc')) {
       dot.classList.add('hover'); ring.classList.add('hover');
     } else {
       dot.classList.remove('hover'); ring.classList.remove('hover');
@@ -303,6 +338,7 @@ function initCursor() {
 
 // ── Initialization ────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  initPageReveal();
   renderProjects(projects);
   initSearchAndFilter();
   initBackButton();

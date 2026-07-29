@@ -23,26 +23,60 @@
 
   <!-- ===== BATTLE TRANSITION OVERLAY ===== -->
   <div id="battle-transition" aria-hidden="true" aria-live="polite">
-    <!-- Layer 1: diagonal slash sweep -->
-    <div class="bt-slash" aria-hidden="true"></div>
-    <!-- Layer 2: panel hitam dari kiri -->
-    <div class="bt-panel-left" aria-hidden="true"></div>
-    <!-- Layer 3: panel hitam dari kanan -->
-    <div class="bt-panel-right" aria-hidden="true"></div>
-    <!-- Layer 4: stripe diagonal overlay -->
-    <div class="bt-center-stripe" aria-hidden="true"></div>
-    <!-- Layer 5: red eye spotlight -->
-    <div class="bt-eye" aria-hidden="true"></div>
-    <!-- Layer 6: halftone dots burst -->
-    <div class="bt-halftone" aria-hidden="true"></div>
-    <!-- Layer 7: chromatic aberration -->
-    <div class="bt-chromatic" aria-hidden="true"></div>
-    <!-- Layer 8: teks tengah -->
-    <div class="bt-text-wrap" aria-hidden="true">
-      <span class="bt-text-main">TAKE YOUR HEART</span>
-      <span class="bt-text-sub">◆ PHANTOM THIEVES ◆</span>
+    <!-- Action Speed Lines Background -->
+    <div class="bt-speedlines" aria-hidden="true"></div>
+    
+    <!-- Shards Particle Explosion -->
+    <div class="bt-shards" aria-hidden="true">
+      <span class="bt-shard s1"></span>
+      <span class="bt-shard s2"></span>
+      <span class="bt-shard s3"></span>
+      <span class="bt-shard s4"></span>
+      <span class="bt-shard s5"></span>
+      <span class="bt-shard s6"></span>
     </div>
-    <!-- Layer 9: final white flash wipe -->
+
+    <!-- Multi-stage Slash Sweeps -->
+    <div class="bt-slash bt-slash-1" aria-hidden="true"></div>
+    <div class="bt-slash bt-slash-2" aria-hidden="true"></div>
+
+    <!-- Slanted Geometric Crash Panels -->
+    <div class="bt-panel-left" aria-hidden="true"></div>
+    <div class="bt-panel-right" aria-hidden="true"></div>
+    <div class="bt-panel-accent-left" aria-hidden="true"></div>
+    <div class="bt-panel-accent-right" aria-hidden="true"></div>
+
+    <!-- Halftone & Center Grid Overlay -->
+    <div class="bt-center-stripe" aria-hidden="true"></div>
+    <div class="bt-halftone" aria-hidden="true"></div>
+    <div class="bt-eye" aria-hidden="true"></div>
+
+    <!-- Phantom Mask / Cyber Target Lock Graphic -->
+    <div class="bt-target-lock" aria-hidden="true">
+      <svg class="bt-mask-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 30 L50 85 L90 30 L65 30 L50 55 L35 30 Z" fill="var(--red)" opacity="0.85"/>
+        <circle cx="50" cy="45" r="28" stroke="var(--white)" stroke-width="2" stroke-dasharray="4 4"/>
+      </svg>
+      <span class="bt-lock-tag">TARGET LOCK: PORTFOLIO</span>
+    </div>
+
+    <!-- Chromatic Glitch FX -->
+    <div class="bt-chromatic" aria-hidden="true"></div>
+
+    <!-- Dynamic Slanted Persona Typography Block -->
+    <div class="bt-text-wrap" aria-hidden="true">
+      <div class="bt-badge-kicker">SHOWTIME // SINKRONISASI PORTFOLIO</div>
+      <h2 class="bt-text-main" data-text="TAKE YOUR HEART">TAKE YOUR HEART</h2>
+      <div class="bt-text-sub-box">
+        <span class="bt-text-sub">◆ PHANTOM THIEVES ARCHIVE SINKRON ◆</span>
+      </div>
+    </div>
+
+    <!-- Comic FX Slam Stamp -->
+    <div class="bt-impact-stamp" aria-hidden="true">SLAM!</div>
+
+    <!-- Color Flash Wipes -->
+    <div class="bt-flash-red" aria-hidden="true"></div>
     <div class="bt-flash" aria-hidden="true"></div>
   </div>
 
@@ -364,11 +398,6 @@
       </div>
     </div>
 
-    <!-- Click hint for skills inspector -->
-    <div class="skills-hint reveal" style="font-family: var(--f-menu); font-size: 10px; letter-spacing: 0.16em; color: var(--red); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-      <span>◆ KLIK KARTU SKILL UNTUK MEMBUKA INSPECTOR PROFILE MENYELURUH</span>
-    </div>
-
     <!-- Skill categories grid -->
     <div class="skills-grid" id="skillsGrid">
 
@@ -418,7 +447,6 @@
             <span class="badge" data-lvl="3">Laravel</span>
             <span class="badge" data-lvl="1">Node.js</span>
             <span class="badge" data-lvl="1">REST API</span>
-            
             <span class="badge" data-lvl="3">PostgreSQL</span>
           </div>
         </div>
@@ -502,7 +530,7 @@
       <!-- HARDWARE & ELECTRONICS -->
       <div class="skill-card reveal" data-skill-id="6">
         <div class="skill-card-visual">
-          <img src="assets/img/gif/muronda.gif" alt="" class="sc-img" aria-hidden="true" />
+          <img src="assets/img/gif/makise.gif" alt="" class="sc-img" aria-hidden="true" />
           <div class="sc-slash" aria-hidden="true"></div>
           <div class="sc-halftone" aria-hidden="true"></div>
           <span class="sc-bignum" aria-hidden="true">06</span>
@@ -544,11 +572,11 @@
           <div class="skill-badges">
             <span class="badge" data-lvl="3">Git/GitHub</span>
             <span class="badge" data-lvl="3">VSCode</span>
-            <span class="badge" data-lvl="3">Kiro</span>
-            <span class="badge" data-lvl="3">Antigravity</span>
+            <span class="badge" data-lvl="3">Cisco</span>
+            <span class="badge" data-lvl="3">R-studio</span>
             <span class="badge" data-lvl="3">Linux/CLI</span>
-            <span class="badge" data-lvl="3">Tencent Cloud</span>
             <span class="badge" data-lvl="2">AWS</span>
+            <span class="badge" data-lvl="3">Tencent Cloud</span>
             <span class="badge" data-lvl="2">Cloudflare</span>
             <span class="badge" data-lvl="1">Android Studio</span>
           </div>
@@ -689,7 +717,7 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <span>© 2026 EVANNVSL ALL RIGHTS RESERVED.</span>
-    <a href="#hero" class="to-top">BACK TO TOP ↑</a>
+    <a href="#hero" class="to-top">BACK ⬆</a>
   </footer>
 
   <!-- ===== JAVASCRIPT MODULE ===== -->

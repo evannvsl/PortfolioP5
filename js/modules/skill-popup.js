@@ -45,8 +45,8 @@ export function initSkillPopup() {
 
       <!-- Bottom bar -->
       <div class="sk-bottombar">
-        <span class="sk-bottombar-num">◆ 01 / 08</span>
-        <span>CONFIDENTIAL SYSTEM PROFILE</span>
+        <span class="sk-bottombar-num">01 / 08</span>
+        <span>OK</span>
       </div>
     </div>
   `;
@@ -118,7 +118,7 @@ export function openSkillPopup(card) {
   overlay.querySelector('.sk-num').textContent          = num;
   overlay.querySelector('.sk-category').textContent     = info.tag || tag || 'SKILLSET';
   overlay.querySelector('.sk-hero-bignum').textContent  = num;
-  overlay.querySelector('.sk-bottombar-num').textContent = `◆ ${num} / ${total}`;
+  overlay.querySelector('.sk-bottombar-num').textContent = `${num} / ${total}`;
 
   const heroImg = overlay.querySelector('.sk-hero-img');
   heroImg.src = imgSrc;
@@ -203,7 +203,6 @@ function buildBodyHTML({ title, info, badges }) {
     <div class="sk-body">
       <!-- Title Block -->
       <div class="sk-title-block">
-        <span class="sk-tag-inline">◆ ${info.tag}</span>
         <h2 class="sk-title">${title}</h2>
       </div>
 
@@ -211,7 +210,7 @@ function buildBodyHTML({ title, info, badges }) {
       <div class="sk-mastery-box">
         <div class="sk-mastery-header">
           <span class="sk-mastery-label">MASTERY LEVEL</span>
-          <span class="sk-mastery-val">${info.mastery}% — ${info.levelText}</span>
+          <span class="sk-mastery-val">${info.mastery}% </span>
         </div>
         <div class="sk-mastery-track">
           <div class="sk-mastery-fill" style="width: 0%;"></div>
@@ -245,6 +244,7 @@ function buildBodyHTML({ title, info, badges }) {
         <span class="sk-legend-item" data-lvl="4">LVL 4: ADVANCED</span>
         <span class="sk-legend-item" data-lvl="3">LVL 3: INTERMEDIATE</span>
         <span class="sk-legend-item" data-lvl="2">LVL 2: GOOD</span>
+        <span class="sk-legend-item" data-lvl="2">LVL 1: BEGINNER</span>
       </div>
     </div>
   `;

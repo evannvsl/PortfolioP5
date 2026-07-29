@@ -265,7 +265,7 @@
 /* ── INFO AREA ───────────────────────────────────────────── */
 .work-info {
   font-family: 'Courier New', Courier, monospace;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.05em;
   padding: 24px 22px 28px;
   flex: 1;
   display: flex;
@@ -292,7 +292,7 @@
 
 .work-info h3 {
   font-family: var(--f-display);
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 400;
   line-height: 1.15;
   color: var(--white);
@@ -302,9 +302,11 @@
 
 /* Description */
 .work-info > p {
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 1.5;
+  letter-spacing: 0.002em;
   text-align: justify;
+  font-style: uppercase;
   color: rgba(255, 255, 255, 0.55);
   flex: 1;
   margin-bottom: 14px;

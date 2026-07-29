@@ -39,7 +39,7 @@
   position: relative;
   z-index: 1;
   width: min(560px, 100vw);
-  height: 100vh;
+  height: 100dvh;
   background: var(--black);
   display: flex;
   flex-direction: column;
@@ -116,13 +116,13 @@
   text-shadow: 0 0 16px rgba(225,6,0,0.6);
 }
 
-.sk-slash-dec {
+/* .sk-slash-dec {
   width: 3px;
   height: 24px;
   background: var(--red);
   transform: skewX(-15deg);
   opacity: 0.7;
-}
+} */
 
 .sk-category {
   font-family: var(--f-menu);
@@ -157,7 +157,7 @@
 /* ── Hero Banner ─────────────────────────────────────────── */
 .sk-hero {
   position: relative;
-  height: 180px;
+  height: 320px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -175,19 +175,6 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, transparent 20%, rgba(8,8,8,0.95) 100%);
-}
-
-.sk-hero-slash {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    transparent 40%,
-    rgba(225,6,0,0.22) 40%,
-    rgba(225,6,0,0.22) 56%,
-    transparent 56%
-  );
-  pointer-events: none;
 }
 
 .sk-hero-bignum {
@@ -213,7 +200,7 @@
 
 /* Title Block */
 .sk-title-block {
-  border-left: 4px solid var(--red);
+  border-left: 2px solid var(--red);
   padding-left: 16px;
 }
 
@@ -232,6 +219,7 @@
   font-size: clamp(22px, 4.5vw, 32px);
   font-weight: 900;
   color: var(--white);
+  text-shadow: 1px 1px 16px rgba(255, 255, 255, 0.366);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.1;
@@ -290,13 +278,14 @@
   border-bottom: 1px solid rgba(225,6,0,0.25);
 }
 
-.sk-section-label::before { content: '◆'; font-size: 8px; }
+.sk-section-label::before { font-size: 8px; }
 
 .sk-desc-text {
-  font-family: var(--f-body);
+  font-family: 'Courier New', Courier, monospace;
+  text-align: justify;
   font-size: 13.5px;
   line-height: 1.65;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.591);
 }
 
 /* Core Competencies List */

@@ -42,7 +42,6 @@
 
     <!-- Category Filter Nav -->
     <nav class="proj-filter-nav" aria-label="Filter kategori project">
-      <button class="filter-tab active" data-cat="all"><span>ALL</span></button>
       <button class="filter-tab" data-cat="code"><span>01. CODE &amp; SECURITY</span></button>
       <button class="filter-tab" data-cat="hardware"><span>02. HARDWARE</span></button>
       <button class="filter-tab" data-cat="creative"><span>03. CREATIVE</span></button>
@@ -153,17 +152,49 @@
     </span>
   </footer>
 
+  <!-- ===== PAGE ENTER CURTAIN REVEAL ===== -->
+  <div id="project-page-reveal" class="ph-page-reveal" aria-hidden="true"></div>
+
   <!-- ===== CLOSING TRANSITION OVERLAY ===== -->
   <div id="close-transition" aria-hidden="true">
-    <div class="ct-slash" aria-hidden="true"></div>
+    <!-- Action Speed Lines -->
+    <div class="ct-speedlines" aria-hidden="true"></div>
+    
+    <!-- Floating Shards -->
+    <div class="ct-shards" aria-hidden="true">
+      <span class="ct-shard s1"></span>
+      <span class="ct-shard s2"></span>
+      <span class="ct-shard s3"></span>
+      <span class="ct-shard s4"></span>
+      <span class="ct-shard s5"></span>
+    </div>
+
+    <!-- Slashes & Crashing Panels -->
+    <div class="ct-slash ct-slash-1" aria-hidden="true"></div>
+    <div class="ct-slash ct-slash-2" aria-hidden="true"></div>
     <div class="ct-panel-left" aria-hidden="true"></div>
     <div class="ct-panel-right" aria-hidden="true"></div>
+    <div class="ct-panel-accent-left" aria-hidden="true"></div>
+    <div class="ct-panel-accent-right" aria-hidden="true"></div>
+
     <div class="ct-stripe" aria-hidden="true"></div>
     <div class="ct-chromatic" aria-hidden="true"></div>
+
+    <!-- Slanted Text Stamp -->
     <div class="ct-text-wrap" aria-hidden="true">
-      <span class="ct-text-main">MISSION COMPLETE</span>
-      <span class="ct-text-sub">◆ RETURNING TO BASE ◆</span>
+      <div class="ct-badge-kicker">STATUS // MISSION CLEARED</div>
+      <h2 class="ct-text-main" data-text="MISSION COMPLETE">MISSION COMPLETE</h2>
+      <div class="ct-text-sub-box">
+        <span class="ct-text-sub">◆ RETURNING TO BASE PORTFOLIO ◆</span>
+      </div>
     </div>
+
+    <!-- Shockwave Ring & Victory Stamp -->
+    <div class="ct-stamp-ring" aria-hidden="true"></div>
+    <div class="ct-impact-stamp" aria-hidden="true">CLEAR!</div>
+
+    <!-- Flash Wipe -->
+    <div class="ct-flash" aria-hidden="true"></div>
   </div>
 
   <script type="module" src="js/project.js"></script>

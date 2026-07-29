@@ -1,67 +1,108 @@
 // ============================================================
 // js/modules/battle-transition.js
-// Persona 5 Royal — Battle Start Transition
-//
-// Sequence:
-//   0ms   — overlay aktif, screen shake
-//   80ms  — slash sweep merah diagonal
-//   200ms — panel hitam crash kiri + kanan
-//   420ms — red eye spotlight
-//   540ms — "TAKE YOUR HEART" text slam
-//   750ms — halftone burst
-//   950ms — white flash wipe
-//  1200ms — navigate ke URL tujuan
+// Persona 5 Royal — High-Octane Dual Transition System (OPEN & BACK)
 // ============================================================
 
-let isPlaying = false;
+let isTransitioning = false;
 
 /**
- * Mainkan battle transition lalu navigate ke URL tujuan.
- * @param {string} targetUrl - URL halaman tujuan
+ * 1. TRANSISI MASUK / OPEN ("TAKE OVER / BATTLE START")
+ * @param {string} targetUrl - URL halaman tujuan (misal: 'project.html')
  */
 export function playBattleTransition(targetUrl) {
-  if (isPlaying) return;
-  isPlaying = true;
+  if (isTransitioning) return;
+  isTransitioning = true;
+
+  sessionStorage.setItem('skipPreloader', 'true');
 
   const overlay = document.getElementById('battle-transition');
   if (!overlay) {
-    // Fallback: langsung navigate kalau overlay tidak ada
-    window.location.href = targetUrl;
+    if (targetUrl) window.location.href = targetUrl;
+    isTransitioning = false;
     return;
   }
 
-  // ── 1. Aktifkan overlay + screen shake ───────────────────
+  // Aktifkan Overlay & Screen Shake
   overlay.classList.add('bt-active');
   document.body.classList.add('bt-shaking');
 
-  // Hapus shake class setelah selesai agar tidak mengganggu
   document.body.addEventListener('animationend', () => {
     document.body.classList.remove('bt-shaking');
   }, { once: true });
 
-  // ── 2. Sound-like vibrate (hanya mobile) ────────────────
+  // Haptic Feedback / Vibrasi Smartphone (Jika didukung device)
   if (navigator.vibrate) {
-    navigator.vibrate([40, 20, 60, 10, 30]);
+    navigator.vibrate([40, 30, 80, 30, 60]);
   }
 
-  // ── 3. Navigate setelah semua animasi selesai ────────────
-  // Total sequence ~ 1150ms, kasih buffer 100ms
-  const NAVIGATE_DELAY = 1150;
-
+  // Navigate setelah animasi flash wipe selesai (~1020ms)
+  const NAVIGATE_DELAY = 1020;
   setTimeout(() => {
-    window.location.href = targetUrl;
+    if (targetUrl) {
+      window.location.href = targetUrl;
+    } else {
+      // Jika demo/uji coba tanpa URL, reset otomatis
+      setTimeout(() => resetTransitions(), 600);
+    }
   }, NAVIGATE_DELAY);
 }
 
 /**
- * Init: pastikan overlay ada di DOM dan event listener siap.
- * Dipanggil dari main.js sekali saja.
+ * 2. TRANSISI KELUAR / BACK ("MISSION COMPLETE / RETURN TO HQ")
+ * @param {string} targetUrl - URL halaman tujuan (misal: 'index.html#portfolio')
+ */
+export function playCloseTransition(targetUrl) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+
+  const overlay = document.getElementById('close-transition');
+  if (!overlay) {
+    if (targetUrl) window.location.href = targetUrl;
+    isTransitioning = false;
+    return;
+  }
+
+  // Aktifkan Close Overlay & Screen Shake
+  overlay.classList.add('ct-active');
+  document.body.classList.add('ct-shaking');
+
+  document.body.addEventListener('animationend', () => {
+    document.body.classList.remove('ct-shaking');
+  }, { once: true });
+
+  if (navigator.vibrate) {
+    navigator.vibrate([30, 20, 50, 20, 40]);
+  }
+
+  // Navigate setelah animasi victory wipe (~920ms)
+  const NAVIGATE_DELAY = 920;
+  setTimeout(() => {
+    if (targetUrl) {
+      window.location.href = targetUrl;
+    } else {
+      // Jika demo/uji coba tanpa URL, reset otomatis
+      setTimeout(() => resetTransitions(), 600);
+    }
+  }, NAVIGATE_DELAY);
+}
+
+/**
+ * Reset semua overlay transisi ke kondisi bersih
+ */
+export function resetTransitions() {
+  const btOverlay = document.getElementById('battle-transition');
+  const ctOverlay = document.getElementById('close-transition');
+  
+  if (btOverlay) btOverlay.classList.remove('bt-active');
+  if (ctOverlay) ctOverlay.classList.remove('ct-active');
+  
+  document.body.classList.remove('bt-shaking', 'ct-shaking');
+  isTransitioning = false;
+}
+
+/**
+ * Init: pastikan overlay bersih saat halaman di-load
  */
 export function initBattleTransition() {
-  // Sudah dibuat di HTML, tidak perlu inject DOM di sini
-  // Tapi pastikan class 'bt-active' bersih saat load
-  const overlay = document.getElementById('battle-transition');
-  if (overlay) {
-    overlay.classList.remove('bt-active');
-  }
+  resetTransitions();
 }

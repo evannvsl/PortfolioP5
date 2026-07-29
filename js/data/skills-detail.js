@@ -5,10 +5,9 @@
 
 export const skillDetails = {
   1: {
-    title: 'FRONTEND DEVELOPMENT',
+    title: 'FRONTEND',
     tag: 'WEB APP & UI/UX',
-    mastery: 90,
-    levelText: 'EXPERT / ADVANCED',
+    mastery: 20,
     desc: 'Pengembangan antarmuka web modern dengan fokus pada performa tinggi, estetika visual yang memukau (Persona 5 aesthetic, glassmorphism, micro-animations), serta desain responsif.',
     competencies: [
       'Merancang UI/UX interaktif dengan Tailwind CSS, Vanilla CSS, dan React/Next.js',
@@ -18,10 +17,10 @@ export const skillDetails = {
     ]
   },
   2: {
-    title: 'BACKEND & DATABASE',
+    title: 'BACKEND',
     tag: 'SERVER & API',
-    mastery: 75,
-    levelText: 'INTERMEDIATE / ADVANCED',
+    mastery: 5,
+    levelText: 'STILL LEARNING',
     desc: 'Perancangan arsitektur server, API terstruktur, serta pengelolaan database relasional yang aman dan dapat diandalkan.',
     competencies: [
       'Pembuatan RESTful API dengan Node.js, Express, dan Laravel',
@@ -31,10 +30,10 @@ export const skillDetails = {
     ]
   },
   3: {
-    title: 'PROGRAMMING LANGUAGES',
+    title: 'LANGUAGES',
     tag: 'CODE & LOGIC',
-    mastery: 85,
-    levelText: 'PROFICIENT',
+    mastery: 25,
+    levelText: 'BEGINNER',
     desc: 'Penguasaan berbagai bahasa pemrograman untuk pengolahan data, rekayasa perangkat lunak, otomatisasi skrip, dan logika sistem.',
     competencies: [
       'Python untuk scripting, analisis data, otomatisasi, dan keamanan siber',
